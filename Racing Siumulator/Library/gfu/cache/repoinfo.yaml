@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cacheType: 1
-  lastUpdatedAtString: 2022-04-07T14:12:01.459+02:00
-  initializedAtString: 2022-04-07T14:12:01.459+02:00
+  lastUpdatedAtString: 2022-04-16T14:23:35.623+02:00
+  initializedAtString: 2022-04-16T14:23:35.623+02:00
   currentGitRemote:
     name: origin
     url: https://github.com/ZespolProjektowy/Symulator_Jazdy.git
@@ -24,14 +24,14 @@ MonoBehaviour:
     function: 0
     token: 
   currentGitBranch:
-    name: Fajny-brancz
-    tracking: 
+    name: main
+    tracking: origin/main
   currentConfigBranch:
-    name: Fajny-brancz
+    name: main
     remote:
-      name: 
-      url: 
-    trackingBranch: 
+      name: origin
+      url: https://github.com/ZespolProjektowy/Symulator_Jazdy.git
+    trackingBranch: main
   currentConfigRemote:
     name: origin
     url: https://github.com/ZespolProjektowy/Symulator_Jazdy.git

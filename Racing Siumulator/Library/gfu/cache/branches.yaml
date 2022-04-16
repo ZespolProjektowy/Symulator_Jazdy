@@ -13,15 +13,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cacheType: 2
-  lastUpdatedAtString: 2022-04-07T13:55:19.536+02:00
-  initializedAtString: 2022-04-07T13:37:52.867+02:00
+  lastUpdatedAtString: 2022-04-16T14:23:36.715+02:00
+  initializedAtString: 2022-04-16T14:23:35.754+02:00
   localBranches:
   - name: Fajny-brancz
-    tracking: 
+    tracking: origin/Fajny-brancz
   - name: main
     tracking: origin/main
   remoteBranches:
+  - name: origin/Fajny-brancz
+    tracking: '[None]'
   - name: origin/HEAD
+    tracking: '[None]'
+  - name: origin/main
     tracking: '[None]'
   remotes:
   - name: origin
@@ -38,9 +42,9 @@ MonoBehaviour:
     values:
     - name: Fajny-brancz
       remote:
-        name: 
-        url: 
-      trackingBranch: 
+        name: origin
+        url: https://github.com/ZespolProjektowy/Symulator_Jazdy.git
+      trackingBranch: Fajny-brancz
     - name: main
       remote:
         name: origin
@@ -51,10 +55,22 @@ MonoBehaviour:
     - origin
     subKeys:
     - Values:
+      - Fajny-brancz
       - HEAD
+      - main
     subKeyValues:
     - Values:
+      - name: Fajny-brancz
+        remote:
+          name: origin
+          url: https://github.com/ZespolProjektowy/Symulator_Jazdy.git
+        trackingBranch: 
       - name: HEAD
+        remote:
+          name: origin
+          url: https://github.com/ZespolProjektowy/Symulator_Jazdy.git
+        trackingBranch: 
+      - name: main
         remote:
           name: origin
           url: https://github.com/ZespolProjektowy/Symulator_Jazdy.git
