@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cacheType: 1
-  lastUpdatedAtString: 2022-04-16T14:23:35.623+02:00
-  initializedAtString: 2022-04-16T14:23:35.623+02:00
+  lastUpdatedAtString: 2022-05-05T06:30:49.125+02:00
+  initializedAtString: 2022-05-05T06:30:49.125+02:00
   currentGitRemote:
     name: origin
     url: https://github.com/ZespolProjektowy/Symulator_Jazdy.git
@@ -24,14 +24,14 @@ MonoBehaviour:
     function: 0
     token: 
   currentGitBranch:
-    name: main
-    tracking: origin/main
+    name: neural_network_creation
+    tracking: origin/neural_network_creation
   currentConfigBranch:
-    name: main
+    name: neural_network_creation
     remote:
       name: origin
       url: https://github.com/ZespolProjektowy/Symulator_Jazdy.git
-    trackingBranch: main
+    trackingBranch: neural_network_creation
   currentConfigRemote:
     name: origin
     url: https://github.com/ZespolProjektowy/Symulator_Jazdy.git
