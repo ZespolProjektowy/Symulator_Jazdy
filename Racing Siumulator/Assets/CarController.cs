@@ -28,7 +28,6 @@ public class CarController : MonoBehaviour
     public void Awake(){
         startPosition = transform.position;
         startRotation = transform.eulerAngles;
-        var car = new PrometeoCarController();
     }
 
     public void Reset(){
