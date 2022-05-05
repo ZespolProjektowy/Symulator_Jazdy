@@ -136,7 +136,7 @@ public class PrometeoCarController : MonoBehaviour
       /*
       IMPORTANT: The following variables should not be modified manually since their values are automatically given via script.
       */
-      Rigidbody carRigidbody; // Stores the car's rigidbody.
+      public Rigidbody carRigidbody; // Stores the car's rigidbody.
       public float steeringAxis; // Used to know whether the steering wheel has reached the maximum value. It goes from -1 to 1.
       float throttleAxis; // Used to know whether the throttle has reached the maximum value. It goes from -1 to 1.
       float driftingAxis;
@@ -628,16 +628,21 @@ public class PrometeoCarController : MonoBehaviour
     }
 
     public void StopCar(){
-      carRigidbody.velocity = Vector3.zero;
-      throttleAxis = 0f;
+      localVelocityX = 0f;
+      localVelocityZ = 0f;
       steeringAxis = 0f;
       throttleAxis = 0f;
+      carSpeed = 0f;
       carRigidbody.velocity = Vector3.zero;
-      frontLeftCollider.motorTorque = 0;
-      frontRightCollider.motorTorque = 0;
-      rearLeftCollider.motorTorque = 0;
-      rearRightCollider.motorTorque = 0;
-      InvokeRepeating("DecelerateCar", 0f, 0.1f);
+      frontLeftCollider.motorTorque = 0f;
+      frontRightCollider.motorTorque = 0f;
+      rearLeftCollider.motorTorque = 0f;
+      rearRightCollider.motorTorque = 0f;
+      isDrifting = false;
+      isTractionLocked = false;
+      ResetSteeringAngle();
+      CancelInvoke("DecelerateCar");
+      Start();
     }
 
     // This function applies brake torque to the wheels according to the brake force given by the user.

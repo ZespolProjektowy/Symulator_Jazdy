@@ -6,7 +6,8 @@ public class CarController : MonoBehaviour
 {
     public PrometeoCarController Prometeo;
 
-    private Vector3 startPosition, startRotation;
+    private Vector3 startPosition;
+    private Quaternion startRotation;
 
     public float timeSinceStart = 0f;
 
@@ -16,18 +17,19 @@ public class CarController : MonoBehaviour
     public float distanceMultiplier = 1.4f;
     // speed has a small impact on fitness
     public float avgSpeedMultiplier = 0.2f;
+    public float sensorMultiplier = 0.1f;
 
     private Vector3 lastPosition;
-    private float totalDistanceTravelled;
+    private float totalDistanceTravelled = 0f;
     private float avgSpeed;
 
-    private float[] sensors = new float[5];
+    
 
     private int[] inputs = new int[4];
 
     public void Awake(){
-        startPosition = transform.position;
-        startRotation = transform.eulerAngles;
+        startPosition = Prometeo.transform.position;
+        startRotation = Prometeo.transform.rotation;
     }
 
     public void Reset(){
@@ -38,44 +40,167 @@ public class CarController : MonoBehaviour
         lastPosition = startPosition;
         overallFitness = 0f;
         Prometeo.transform.position = startPosition;
-        Prometeo.transform.eulerAngles = startRotation;
+        Prometeo.transform.rotation = startRotation;
+
+        if (Prometeo.carRigidbody != null) {
+        Prometeo.carRigidbody.velocity = Vector3.zero;
+        Prometeo.carRigidbody.angularVelocity = Vector3.zero;
     }
+    }
+
+    private void FixedUpdate(){
+        InputSensors();
+
+        lastPosition = Prometeo.transform.position;
+
+        MoveCar(inputs);
+
+        timeSinceStart += Time.deltaTime;
+
+        CalculateFitness();
+    }
+
+    private void CalculateFitness() {
+
+       Debug.Log("x: " + startPosition.x);
+       Debug.Log("z: " + startPosition.z);
+
+       Debug.Log("Lx: " + lastPosition.x);
+       Debug.Log("Lz: " + lastPosition.z);
+
+
+        totalDistanceTravelled = Vector3.Distance(Prometeo.transform.position,startPosition);
+        avgSpeed = totalDistanceTravelled/timeSinceStart;
+
+       overallFitness = 
+       (totalDistanceTravelled*distanceMultiplier)
+       +(avgSpeed*avgSpeedMultiplier)
+       +(((sensors[0]+sensors[1]+sensors[2]+sensors[3]+sensors[4])/5)*sensorMultiplier);
+
+       
+
+       //Debug.Log(totalDistanceTravelled);
+
+        // if (timeSinceStart > 20 && overallFitness < 40) {
+        //     Reset();
+        // }
+
+        // if (overallFitness >= 1000) {
+        //     //Saves network to a JSON
+        //     Reset();
+        // }
+
+    }
+
+
+    
 
     private void OnCollisionEnter(Collision collision)
     {
         Reset();
     }
 
-    private void MoveCar(){
+    private Color returnHitColor(float hit){
+      if(hit <= 4){
+          return Color.red;
+        }
+        else if(hit <= 6 && hit > 4){
+          return new Color(255f, 165f, 0f);
+        }
+        else {
+          return Color.green;
+        }
+    } 
+    private float[] sensors = new float[5];
+    private void InputSensors() {
 
-        if(inputs[0] == 1){
+        Vector3 a = (Prometeo.transform.forward+Prometeo.transform.right);
+        Vector3 b = (Prometeo.transform.forward);
+        Vector3 c = (Prometeo.transform.forward-Prometeo.transform.right);
+        Vector3 d = (Prometeo.transform.forward+Prometeo.transform.right/2);
+        Vector3 e = (Prometeo.transform.forward-Prometeo.transform.right/2);
+
+        Ray r = new Ray(Prometeo.transform.position,a);
+        RaycastHit hit;
+
+        if (Physics.Raycast(r, out hit)) {
+            sensors[0] = hit.distance/20;
+            Debug.Log("A: " + hit.distance);
+            Debug.DrawRay(Prometeo.transform.position, a*hit.distance, returnHitColor(hit.distance));
+            
+        }
+
+        
+
+        r.direction = b;
+
+        if (Physics.Raycast(r, out hit)) {
+            sensors[1] = hit.distance/20;
+            Debug.Log("B: " + hit.distance);
+            Debug.DrawRay(Prometeo.transform.position, b*hit.distance, returnHitColor(hit.distance));
+            
+        }
+
+        r.direction = c;
+
+        if (Physics.Raycast(r, out hit)) {
+            sensors[2] = hit.distance/20;
+            Debug.Log("C: " + hit.distance);
+            Debug.DrawRay(Prometeo.transform.position, c*hit.distance, returnHitColor(hit.distance));
+           
+        }
+
+        r.direction = d;
+
+        if (Physics.Raycast(r, out hit)) {
+            sensors[3] = hit.distance/20;
+            Debug.Log("D: " + hit.distance);
+            Debug.DrawRay(Prometeo.transform.position, d*hit.distance, returnHitColor(hit.distance));
+           
+        }
+
+        r.direction = e;
+
+        if (Physics.Raycast(r, out hit)) {
+            sensors[4] = hit.distance/20;
+            Debug.Log("E: " + hit.distance);
+            Debug.DrawRay(Prometeo.transform.position, e*hit.distance, returnHitColor(hit.distance));
+           
+        }
+
+    }
+    private void MoveCar(int[] input){
+
+        if(input[0] == 1){
           CancelInvoke("DecelerateCar");
           Prometeo.deceleratingCar = false;
           Prometeo.GoForward();
         }
-        if(inputs[1] == 1){
+        if(input[1] == 1){
           CancelInvoke("DecelerateCar");
           Prometeo.deceleratingCar = false;
           Prometeo.GoReverse();
         }
 
-        if(inputs[2] == 1){
+        if(input[2] == 1){
           Prometeo.TurnLeft();
         }
-        if(inputs[3] == 1){
+        if(input[3] == 1){
           Prometeo.TurnRight();
         }
 
-        if((inputs[0] == 0) && (inputs[1] == 0)){
+        if((input[0] == 0) && (input[1] == 0)){
           Prometeo.ThrottleOff();
         }
-        if((inputs[0] == 0) && (inputs[1] == 0) && !Prometeo.deceleratingCar){
+        if((input[0] == 0) && (input[1] == 0) && !Prometeo.deceleratingCar){
           InvokeRepeating("DecelerateCar", 0f, 0.1f);
           Prometeo.deceleratingCar = true;
         }
-        if((inputs[2] == 0) && (inputs[3] == 0) && Prometeo.steeringAxis != 0f){
+        if((input[2] == 0) && (input[3] == 0) && Prometeo.steeringAxis != 0f){
           Prometeo.ResetSteeringAngle();
         }
+
+        Prometeo.AnimateWheelMeshes();
     }
 
 }
