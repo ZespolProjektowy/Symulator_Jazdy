@@ -13,12 +13,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cacheType: 6
-  lastUpdatedAtString: 2022-05-05T07:14:05.686+02:00
-  initializedAtString: 2022-05-05T07:14:05.633+02:00
+  lastUpdatedAtString: 2022-05-05T07:44:57.855+02:00
+  initializedAtString: 2022-05-05T07:14:40.493+02:00
   entries:
-  - path: Racing Siumulator\Assembly-CSharp.csproj
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Assembly-CSharp.csproj
-    projectPath: Assembly-CSharp.csproj
+  - path: Racing Siumulator\Assets\CarController.cs
+    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Assets\CarController.cs
+    projectPath: Assets\CarController.cs
+    originalPath: 
+    indexStatus: 0
+    workTreeStatus: 3
+  - path: Racing Siumulator\Assets\race-track-lake\race_track_lake.unity
+    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Assets\race-track-lake\race_track_lake.unity
+    projectPath: Assets\race-track-lake\race_track_lake.unity
     originalPath: 
     indexStatus: 0
     workTreeStatus: 3
@@ -28,453 +34,63 @@ MonoBehaviour:
     originalPath: 
     indexStatus: 0
     workTreeStatus: 3
-  - path: Racing Siumulator\Library\Artifacts\01\01e07f6385d7b5bddde22e711c287312
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\01\01e07f6385d7b5bddde22e711c287312
-    projectPath: Library\Artifacts\01\01e07f6385d7b5bddde22e711c287312
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\05\05d6bd124c25743394c4d9d821e7ba47
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\05\05d6bd124c25743394c4d9d821e7ba47
-    projectPath: Library\Artifacts\05\05d6bd124c25743394c4d9d821e7ba47
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\10\101d8d548e806606da0265439f987189
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\10\101d8d548e806606da0265439f987189
-    projectPath: Library\Artifacts\10\101d8d548e806606da0265439f987189
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\11\11602644e3454823a6fb4a001cbab625
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\11\11602644e3454823a6fb4a001cbab625
-    projectPath: Library\Artifacts\11\11602644e3454823a6fb4a001cbab625
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\16\16475dd1200fe5cd99f8173d8911cf9f
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\16\16475dd1200fe5cd99f8173d8911cf9f
-    projectPath: Library\Artifacts\16\16475dd1200fe5cd99f8173d8911cf9f
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\18\18c3174f749d31ad2257aba5fda979d7
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\18\18c3174f749d31ad2257aba5fda979d7
-    projectPath: Library\Artifacts\18\18c3174f749d31ad2257aba5fda979d7
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\19\194dd898e9425356f9976ecab0ede58a
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\19\194dd898e9425356f9976ecab0ede58a
-    projectPath: Library\Artifacts\19\194dd898e9425356f9976ecab0ede58a
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\1b\1b469943bb3cb0b6c45b04f1def40646
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\1b\1b469943bb3cb0b6c45b04f1def40646
-    projectPath: Library\Artifacts\1b\1b469943bb3cb0b6c45b04f1def40646
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\1e\1ed5d4f3ce1bb35b320ef0308fa91662
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\1e\1ed5d4f3ce1bb35b320ef0308fa91662
-    projectPath: Library\Artifacts\1e\1ed5d4f3ce1bb35b320ef0308fa91662
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\1f\1f49874f38d0b7b3714ea6e963c45cc5
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\1f\1f49874f38d0b7b3714ea6e963c45cc5
-    projectPath: Library\Artifacts\1f\1f49874f38d0b7b3714ea6e963c45cc5
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\28\28468e44fbd0c29c92ac2f6ffa021ad8
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\28\28468e44fbd0c29c92ac2f6ffa021ad8
-    projectPath: Library\Artifacts\28\28468e44fbd0c29c92ac2f6ffa021ad8
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\32\32a901e58426ebe4c75287281f4fe770
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\32\32a901e58426ebe4c75287281f4fe770
-    projectPath: Library\Artifacts\32\32a901e58426ebe4c75287281f4fe770
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\36\36acabaa7b953c4c4ea1965426a1d218
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\36\36acabaa7b953c4c4ea1965426a1d218
-    projectPath: Library\Artifacts\36\36acabaa7b953c4c4ea1965426a1d218
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\37\37df6d083c146e94a8cae2eb3e44431d
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\37\37df6d083c146e94a8cae2eb3e44431d
-    projectPath: Library\Artifacts\37\37df6d083c146e94a8cae2eb3e44431d
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\3f\3fde39a0ac32981cd308c39f571c105a
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\3f\3fde39a0ac32981cd308c39f571c105a
-    projectPath: Library\Artifacts\3f\3fde39a0ac32981cd308c39f571c105a
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\43\438aef2061a02b50d769407c16035901
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\43\438aef2061a02b50d769407c16035901
-    projectPath: Library\Artifacts\43\438aef2061a02b50d769407c16035901
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\47\475ed46c046e28c440042307bb323fd9
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\47\475ed46c046e28c440042307bb323fd9
-    projectPath: Library\Artifacts\47\475ed46c046e28c440042307bb323fd9
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\48\481b86cb41f7e909e18dac8d3613e3b5
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\48\481b86cb41f7e909e18dac8d3613e3b5
-    projectPath: Library\Artifacts\48\481b86cb41f7e909e18dac8d3613e3b5
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\4d\4d6159196d7dbea539d3f5d07244736e
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\4d\4d6159196d7dbea539d3f5d07244736e
-    projectPath: Library\Artifacts\4d\4d6159196d7dbea539d3f5d07244736e
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\4d\4d9bc52e31bfe01f088cc933475fdf9c
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\4d\4d9bc52e31bfe01f088cc933475fdf9c
-    projectPath: Library\Artifacts\4d\4d9bc52e31bfe01f088cc933475fdf9c
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\57\57b6d0971fd6ded77c538c08ce4a0633
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\57\57b6d0971fd6ded77c538c08ce4a0633
-    projectPath: Library\Artifacts\57\57b6d0971fd6ded77c538c08ce4a0633
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\5d\5d719775c7da858866be2e42218b08ce
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\5d\5d719775c7da858866be2e42218b08ce
-    projectPath: Library\Artifacts\5d\5d719775c7da858866be2e42218b08ce
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\5f\5f81a1d93ed18d015bcc8548c1e68d9b
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\5f\5f81a1d93ed18d015bcc8548c1e68d9b
-    projectPath: Library\Artifacts\5f\5f81a1d93ed18d015bcc8548c1e68d9b
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\66\6661e2b44599279f27d439802b616487
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\66\6661e2b44599279f27d439802b616487
-    projectPath: Library\Artifacts\66\6661e2b44599279f27d439802b616487
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\6d\6d8f086ab166b267e8c5a5b0a0bfa838
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\6d\6d8f086ab166b267e8c5a5b0a0bfa838
-    projectPath: Library\Artifacts\6d\6d8f086ab166b267e8c5a5b0a0bfa838
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\74\74d8906e0687ae70e4483dfa84a9d3fc
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\74\74d8906e0687ae70e4483dfa84a9d3fc
-    projectPath: Library\Artifacts\74\74d8906e0687ae70e4483dfa84a9d3fc
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\76\76f1503cb053ee35ab461ec9fda0ac85
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\76\76f1503cb053ee35ab461ec9fda0ac85
-    projectPath: Library\Artifacts\76\76f1503cb053ee35ab461ec9fda0ac85
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\78\78830ada661c9387972e407342367e50
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\78\78830ada661c9387972e407342367e50
-    projectPath: Library\Artifacts\78\78830ada661c9387972e407342367e50
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\81\81fbb402c2d552cbe58b9362bd627c73
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\81\81fbb402c2d552cbe58b9362bd627c73
-    projectPath: Library\Artifacts\81\81fbb402c2d552cbe58b9362bd627c73
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\82\824211fdf6d8740feb243728420246d8
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\82\824211fdf6d8740feb243728420246d8
-    projectPath: Library\Artifacts\82\824211fdf6d8740feb243728420246d8
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\83\83f52c4cf8c3e1b850d22566376fc055
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\83\83f52c4cf8c3e1b850d22566376fc055
-    projectPath: Library\Artifacts\83\83f52c4cf8c3e1b850d22566376fc055
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\84\84e4fafbae554dd3fa238001b7f1267f
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\84\84e4fafbae554dd3fa238001b7f1267f
-    projectPath: Library\Artifacts\84\84e4fafbae554dd3fa238001b7f1267f
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\8d\8d369261332003645b7da31c01f8f601
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\8d\8d369261332003645b7da31c01f8f601
-    projectPath: Library\Artifacts\8d\8d369261332003645b7da31c01f8f601
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\8e\8e7c571ada9824aee9691ad076d73e8c
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\8e\8e7c571ada9824aee9691ad076d73e8c
-    projectPath: Library\Artifacts\8e\8e7c571ada9824aee9691ad076d73e8c
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\91\91ec5252d1507a7728ec579bad408959
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\91\91ec5252d1507a7728ec579bad408959
-    projectPath: Library\Artifacts\91\91ec5252d1507a7728ec579bad408959
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\94\949b5ced53a558c8ae2ba233ebbb71fc
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\94\949b5ced53a558c8ae2ba233ebbb71fc
-    projectPath: Library\Artifacts\94\949b5ced53a558c8ae2ba233ebbb71fc
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\94\94a3693bd913b103cd7ff8ef8ad0cfc8
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\94\94a3693bd913b103cd7ff8ef8ad0cfc8
-    projectPath: Library\Artifacts\94\94a3693bd913b103cd7ff8ef8ad0cfc8
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\96\969d5daa11b223d486fed6f11cba8339
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\96\969d5daa11b223d486fed6f11cba8339
-    projectPath: Library\Artifacts\96\969d5daa11b223d486fed6f11cba8339
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\9a\9a0c915efad0fe15d53fd67b2002cadc
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\9a\9a0c915efad0fe15d53fd67b2002cadc
-    projectPath: Library\Artifacts\9a\9a0c915efad0fe15d53fd67b2002cadc
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\9b\9b4a5726b7e5fc028782ac9426a7f9bc
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\9b\9b4a5726b7e5fc028782ac9426a7f9bc
-    projectPath: Library\Artifacts\9b\9b4a5726b7e5fc028782ac9426a7f9bc
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\9e\9e66b4994299e3c2a08e7e9874560dda
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\9e\9e66b4994299e3c2a08e7e9874560dda
-    projectPath: Library\Artifacts\9e\9e66b4994299e3c2a08e7e9874560dda
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\9f\9f2586eb14b6cce2ac302ddd6201713a
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\9f\9f2586eb14b6cce2ac302ddd6201713a
-    projectPath: Library\Artifacts\9f\9f2586eb14b6cce2ac302ddd6201713a
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\a5\a5f83576f4d697b10a2a1fa6ac611b70
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\a5\a5f83576f4d697b10a2a1fa6ac611b70
-    projectPath: Library\Artifacts\a5\a5f83576f4d697b10a2a1fa6ac611b70
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\a7\a7106c4ba75a33eee52fd3fc8497dc8f
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\a7\a7106c4ba75a33eee52fd3fc8497dc8f
-    projectPath: Library\Artifacts\a7\a7106c4ba75a33eee52fd3fc8497dc8f
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\a9\a992f342bf245f1c8671608a14ea873d
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\a9\a992f342bf245f1c8671608a14ea873d
-    projectPath: Library\Artifacts\a9\a992f342bf245f1c8671608a14ea873d
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\ab\abcb1cb1279106e35f6c8fbeef2ead34
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\ab\abcb1cb1279106e35f6c8fbeef2ead34
-    projectPath: Library\Artifacts\ab\abcb1cb1279106e35f6c8fbeef2ead34
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\ad\add5065a4ad8583282f7b1e4374418b2
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\ad\add5065a4ad8583282f7b1e4374418b2
-    projectPath: Library\Artifacts\ad\add5065a4ad8583282f7b1e4374418b2
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\b3\b33a43dd5273c98325dfddcfe1f4a0ce
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\b3\b33a43dd5273c98325dfddcfe1f4a0ce
-    projectPath: Library\Artifacts\b3\b33a43dd5273c98325dfddcfe1f4a0ce
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\b4\b4c9c647e32ad18090a0d209f9d7a09f
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\b4\b4c9c647e32ad18090a0d209f9d7a09f
-    projectPath: Library\Artifacts\b4\b4c9c647e32ad18090a0d209f9d7a09f
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\b6\b65978ef4225d85523d429195fea8747
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\b6\b65978ef4225d85523d429195fea8747
-    projectPath: Library\Artifacts\b6\b65978ef4225d85523d429195fea8747
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\b7\b7d106249bc16f7c4fe787453ba11b13
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\b7\b7d106249bc16f7c4fe787453ba11b13
-    projectPath: Library\Artifacts\b7\b7d106249bc16f7c4fe787453ba11b13
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\b9\b9ce4d2349c85dc34c6dd7da537d5208
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\b9\b9ce4d2349c85dc34c6dd7da537d5208
-    projectPath: Library\Artifacts\b9\b9ce4d2349c85dc34c6dd7da537d5208
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\bc\bcdda58c16bfa1d3a0d4ce28aa40a5d0
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\bc\bcdda58c16bfa1d3a0d4ce28aa40a5d0
-    projectPath: Library\Artifacts\bc\bcdda58c16bfa1d3a0d4ce28aa40a5d0
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\c0\c01be503f8b72ce3a6f3b567fb575da7
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\c0\c01be503f8b72ce3a6f3b567fb575da7
-    projectPath: Library\Artifacts\c0\c01be503f8b72ce3a6f3b567fb575da7
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\c4\c4f09a98138bc7f12f2d68514fb00c50
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\c4\c4f09a98138bc7f12f2d68514fb00c50
-    projectPath: Library\Artifacts\c4\c4f09a98138bc7f12f2d68514fb00c50
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\d3\d3acc8edd3685729003cab0f63fc6fc8
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\d3\d3acc8edd3685729003cab0f63fc6fc8
-    projectPath: Library\Artifacts\d3\d3acc8edd3685729003cab0f63fc6fc8
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\d4\d4a71b1444bd2c3cf186ed10a7cbda59
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\d4\d4a71b1444bd2c3cf186ed10a7cbda59
-    projectPath: Library\Artifacts\d4\d4a71b1444bd2c3cf186ed10a7cbda59
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\d4\d4fb3aa8cbd333f813d6376b2be87c5a
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\d4\d4fb3aa8cbd333f813d6376b2be87c5a
-    projectPath: Library\Artifacts\d4\d4fb3aa8cbd333f813d6376b2be87c5a
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\dc\dce201e9fb13d534954ae07ce89bdcd4
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\dc\dce201e9fb13d534954ae07ce89bdcd4
-    projectPath: Library\Artifacts\dc\dce201e9fb13d534954ae07ce89bdcd4
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\de\de5ceff0fe343b575b2c3ebc839c48bf
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\de\de5ceff0fe343b575b2c3ebc839c48bf
-    projectPath: Library\Artifacts\de\de5ceff0fe343b575b2c3ebc839c48bf
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\e0\e0b88e15d747efc77a6237a7e1877d01
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\e0\e0b88e15d747efc77a6237a7e1877d01
-    projectPath: Library\Artifacts\e0\e0b88e15d747efc77a6237a7e1877d01
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\e1\e1b7e0712ac64c70cd4d04495d7951e4
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\e1\e1b7e0712ac64c70cd4d04495d7951e4
-    projectPath: Library\Artifacts\e1\e1b7e0712ac64c70cd4d04495d7951e4
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\e1\e1f6b5344478f91c7222148f49cacd9b
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\e1\e1f6b5344478f91c7222148f49cacd9b
-    projectPath: Library\Artifacts\e1\e1f6b5344478f91c7222148f49cacd9b
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\e3\e375aa0756f6a88aec49dd84739ec6ce
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\e3\e375aa0756f6a88aec49dd84739ec6ce
-    projectPath: Library\Artifacts\e3\e375aa0756f6a88aec49dd84739ec6ce
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\e6\e64234ab640d389cb8fc2e06390258ab
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\e6\e64234ab640d389cb8fc2e06390258ab
-    projectPath: Library\Artifacts\e6\e64234ab640d389cb8fc2e06390258ab
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\e7\e7c0901f4a928b106a525a5358f3bc89
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\e7\e7c0901f4a928b106a525a5358f3bc89
-    projectPath: Library\Artifacts\e7\e7c0901f4a928b106a525a5358f3bc89
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\e8\e80398614189d03ff2d10d0e266153c7
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\e8\e80398614189d03ff2d10d0e266153c7
-    projectPath: Library\Artifacts\e8\e80398614189d03ff2d10d0e266153c7
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\e9\e9f976d53948c92968c02aa7b7929fdd
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\e9\e9f976d53948c92968c02aa7b7929fdd
-    projectPath: Library\Artifacts\e9\e9f976d53948c92968c02aa7b7929fdd
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\ef\ef027cab3b0945d03c2fabcad5be20cd
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\ef\ef027cab3b0945d03c2fabcad5be20cd
-    projectPath: Library\Artifacts\ef\ef027cab3b0945d03c2fabcad5be20cd
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\f2\f256d27a7f9279a8166b9984118adf33
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\f2\f256d27a7f9279a8166b9984118adf33
-    projectPath: Library\Artifacts\f2\f256d27a7f9279a8166b9984118adf33
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\f9\f940d6955329f627a08c586798357395
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\f9\f940d6955329f627a08c586798357395
-    projectPath: Library\Artifacts\f9\f940d6955329f627a08c586798357395
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\ff\ff11bc729d140d64a8e3caf98d24de31
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\ff\ff11bc729d140d64a8e3caf98d24de31
-    projectPath: Library\Artifacts\ff\ff11bc729d140d64a8e3caf98d24de31
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Library\Artifacts\ff\ffd8914e0ccda982a0c31023555f979d
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\ff\ffd8914e0ccda982a0c31023555f979d
-    projectPath: Library\Artifacts\ff\ffd8914e0ccda982a0c31023555f979d
-    originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
+  - path: Racing Siumulator\Library\Artifacts\10\102eca3a739c91ade4af375df4f0b273
+    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\10\102eca3a739c91ade4af375df4f0b273
+    projectPath: Library\Artifacts\10\102eca3a739c91ade4af375df4f0b273
+    originalPath: 
+    indexStatus: 1
+    workTreeStatus: 1
+  - path: Racing Siumulator\Library\Artifacts\5a\5a0332eda1778934d94dfbfd23a55406
+    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\5a\5a0332eda1778934d94dfbfd23a55406
+    projectPath: Library\Artifacts\5a\5a0332eda1778934d94dfbfd23a55406
+    originalPath: 
+    indexStatus: 1
+    workTreeStatus: 1
+  - path: Racing Siumulator\Library\Artifacts\62\62caf7b0e1a25aec42f9e567f191ab6e
+    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\62\62caf7b0e1a25aec42f9e567f191ab6e
+    projectPath: Library\Artifacts\62\62caf7b0e1a25aec42f9e567f191ab6e
+    originalPath: 
+    indexStatus: 1
+    workTreeStatus: 1
+  - path: Racing Siumulator\Library\Artifacts\c5\c56514dde688c7a0fb8f793c8bfca3f9
+    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\c5\c56514dde688c7a0fb8f793c8bfca3f9
+    projectPath: Library\Artifacts\c5\c56514dde688c7a0fb8f793c8bfca3f9
+    originalPath: 
+    indexStatus: 1
+    workTreeStatus: 1
+  - path: Racing Siumulator\Library\Artifacts\d2\d2279e798e99c044389d9a7ecfe99248
+    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\d2\d2279e798e99c044389d9a7ecfe99248
+    projectPath: Library\Artifacts\d2\d2279e798e99c044389d9a7ecfe99248
+    originalPath: 
+    indexStatus: 1
+    workTreeStatus: 1
+  - path: Racing Siumulator\Library\Artifacts\e8\e8b67b3f540dae65e880464fca2c88df
+    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\Artifacts\e8\e8b67b3f540dae65e880464fca2c88df
+    projectPath: Library\Artifacts\e8\e8b67b3f540dae65e880464fca2c88df
+    originalPath: 
+    indexStatus: 1
+    workTreeStatus: 1
   - path: Racing Siumulator\Library\EditorInstance.json
     fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\EditorInstance.json
     projectPath: Library\EditorInstance.json
     originalPath: 
     indexStatus: 1
     workTreeStatus: 1
+  - path: Racing Siumulator\Library\gfu\cache\gitlocks.yaml
+    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\gfu\cache\gitlocks.yaml
+    projectPath: Library\gfu\cache\gitlocks.yaml
+    originalPath: 
+    indexStatus: 0
+    workTreeStatus: 3
   - path: Racing Siumulator\Library\gfu\cache\gitlog.yaml
     fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\gfu\cache\gitlog.yaml
     projectPath: Library\gfu\cache\gitlog.yaml
+    originalPath: 
+    indexStatus: 0
+    workTreeStatus: 3
+  - path: Racing Siumulator\Library\gfu\cache\gitstatusentries.yaml
+    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\gfu\cache\gitstatusentries.yaml
+    projectPath: Library\gfu\cache\gitstatusentries.yaml
     originalPath: 
     indexStatus: 0
     workTreeStatus: 3
@@ -490,9 +106,27 @@ MonoBehaviour:
     originalPath: 
     indexStatus: 0
     workTreeStatus: 3
+  - path: Racing Siumulator\Library\InspectorExpandedItems.asset
+    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\InspectorExpandedItems.asset
+    projectPath: Library\InspectorExpandedItems.asset
+    originalPath: 
+    indexStatus: 0
+    workTreeStatus: 3
   - path: Racing Siumulator\Library\SceneVisibilityState.asset
     fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\SceneVisibilityState.asset
     projectPath: Library\SceneVisibilityState.asset
+    originalPath: 
+    indexStatus: 0
+    workTreeStatus: 3
+  - path: Racing Siumulator\Library\ScriptAssemblies\Assembly-CSharp.dll
+    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\ScriptAssemblies\Assembly-CSharp.dll
+    projectPath: Library\ScriptAssemblies\Assembly-CSharp.dll
+    originalPath: 
+    indexStatus: 0
+    workTreeStatus: 3
+  - path: Racing Siumulator\Library\ScriptAssemblies\Assembly-CSharp.pdb
+    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\ScriptAssemblies\Assembly-CSharp.pdb
+    projectPath: Library\ScriptAssemblies\Assembly-CSharp.pdb
     originalPath: 
     indexStatus: 0
     workTreeStatus: 3
@@ -508,63 +142,123 @@ MonoBehaviour:
     originalPath: 
     indexStatus: 0
     workTreeStatus: 3
+  - path: Racing Siumulator\Library\StateCache\MainStageHierarchy\4d\4d2a36d9faf65734f0bbefb3ee623532.json
+    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Library\StateCache\MainStageHierarchy\4d\4d2a36d9faf65734f0bbefb3ee623532.json
+    projectPath: Library\StateCache\MainStageHierarchy\4d\4d2a36d9faf65734f0bbefb3ee623532.json
+    originalPath: 
+    indexStatus: 0
+    workTreeStatus: 3
   - path: Racing Siumulator\Logs\AssetImportWorker0.log
     fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Logs\AssetImportWorker0.log
     projectPath: Logs\AssetImportWorker0.log
     originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
+    indexStatus: 1
+    workTreeStatus: 1
   - path: Racing Siumulator\Logs\AssetImportWorker0-prev.log
     fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Logs\AssetImportWorker0-prev.log
     projectPath: Logs\AssetImportWorker0-prev.log
     originalPath: 
     indexStatus: 0
-    workTreeStatus: 3
+    workTreeStatus: 5
   - path: Racing Siumulator\Logs\shadercompiler-AssetImportWorker0.log
     fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Logs\shadercompiler-AssetImportWorker0.log
     projectPath: Logs\shadercompiler-AssetImportWorker0.log
     originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
+    indexStatus: 1
+    workTreeStatus: 1
   - path: Racing Siumulator\Logs\shadercompiler-UnityShaderCompiler.exe0.log
     fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Logs\shadercompiler-UnityShaderCompiler.exe0.log
     projectPath: Logs\shadercompiler-UnityShaderCompiler.exe0.log
     originalPath: 
     indexStatus: 0
     workTreeStatus: 3
-  - path: Racing Siumulator\Logs\shadercompiler-UnityShaderCompiler.exe1.log
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Logs\shadercompiler-UnityShaderCompiler.exe1.log
-    projectPath: Logs\shadercompiler-UnityShaderCompiler.exe1.log
+  - path: Racing Siumulator\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+    projectPath: obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
     originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Logs\shadercompiler-UnityShaderCompiler.exe2.log
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Logs\shadercompiler-UnityShaderCompiler.exe2.log
-    projectPath: Logs\shadercompiler-UnityShaderCompiler.exe2.log
+    indexStatus: 1
+    workTreeStatus: 1
+  - path: Racing Siumulator\obj\Debug\Assembly-CSharp-Editor.csprojAssemblyReference.cache
+    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\obj\Debug\Assembly-CSharp-Editor.csprojAssemblyReference.cache
+    projectPath: obj\Debug\Assembly-CSharp-Editor.csprojAssemblyReference.cache
     originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Logs\shadercompiler-UnityShaderCompiler.exe3.log
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Logs\shadercompiler-UnityShaderCompiler.exe3.log
-    projectPath: Logs\shadercompiler-UnityShaderCompiler.exe3.log
+    indexStatus: 1
+    workTreeStatus: 1
+  - path: Racing Siumulator\Temp\__Backupscenes\0.backup
+    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Temp\__Backupscenes\0.backup
+    projectPath: Temp\__Backupscenes\0.backup
     originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Logs\shadercompiler-UnityShaderCompiler.exe4.log
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Logs\shadercompiler-UnityShaderCompiler.exe4.log
-    projectPath: Logs\shadercompiler-UnityShaderCompiler.exe4.log
+    indexStatus: 1
+    workTreeStatus: 1
+  - path: Racing Siumulator\Temp\Assembly-CSharp.dll.hash
+    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Temp\Assembly-CSharp.dll.hash
+    projectPath: Temp\Assembly-CSharp.dll.hash
     originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
-  - path: Racing Siumulator\Logs\shadercompiler-UnityShaderCompiler.exe5.log
-    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Logs\shadercompiler-UnityShaderCompiler.exe5.log
-    projectPath: Logs\shadercompiler-UnityShaderCompiler.exe5.log
+    indexStatus: 1
+    workTreeStatus: 1
+  - path: Racing Siumulator\Temp\Assembly-CSharp-Editor.dll.hash
+    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Temp\Assembly-CSharp-Editor.dll.hash
+    projectPath: Temp\Assembly-CSharp-Editor.dll.hash
     originalPath: 
-    indexStatus: 0
-    workTreeStatus: 5
+    indexStatus: 1
+    workTreeStatus: 1
+  - path: Racing Siumulator\Temp\CompilationLog.txt
+    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Temp\CompilationLog.txt
+    projectPath: Temp\CompilationLog.txt
+    originalPath: 
+    indexStatus: 1
+    workTreeStatus: 1
   - path: Racing Siumulator\Temp\UnityLockfile
     fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Temp\UnityLockfile
     projectPath: Temp\UnityLockfile
+    originalPath: 
+    indexStatus: 1
+    workTreeStatus: 1
+  - path: Racing Siumulator\Temp\UnityTempFile-5e852efd3ccca844dbce311f72f6c2d2
+    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Temp\UnityTempFile-5e852efd3ccca844dbce311f72f6c2d2
+    projectPath: Temp\UnityTempFile-5e852efd3ccca844dbce311f72f6c2d2
+    originalPath: 
+    indexStatus: 1
+    workTreeStatus: 1
+  - path: Racing Siumulator\Temp\UnityTempFile-7a74690aae86c9e48af2d762494a1df6
+    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Temp\UnityTempFile-7a74690aae86c9e48af2d762494a1df6
+    projectPath: Temp\UnityTempFile-7a74690aae86c9e48af2d762494a1df6
+    originalPath: 
+    indexStatus: 1
+    workTreeStatus: 1
+  - path: Racing Siumulator\Temp\UnityTempFile-7c4941b9d291bcc4897aa5f1f16e4eee
+    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Temp\UnityTempFile-7c4941b9d291bcc4897aa5f1f16e4eee
+    projectPath: Temp\UnityTempFile-7c4941b9d291bcc4897aa5f1f16e4eee
+    originalPath: 
+    indexStatus: 1
+    workTreeStatus: 1
+  - path: Racing Siumulator\Temp\UnityTempFile-81ac98a98b3b19b42b08dafab0f81657
+    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Temp\UnityTempFile-81ac98a98b3b19b42b08dafab0f81657
+    projectPath: Temp\UnityTempFile-81ac98a98b3b19b42b08dafab0f81657
+    originalPath: 
+    indexStatus: 1
+    workTreeStatus: 1
+  - path: Racing Siumulator\Temp\UnityTempFile-8ec7eae7006adc346a8198d69c7eed49
+    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Temp\UnityTempFile-8ec7eae7006adc346a8198d69c7eed49
+    projectPath: Temp\UnityTempFile-8ec7eae7006adc346a8198d69c7eed49
+    originalPath: 
+    indexStatus: 1
+    workTreeStatus: 1
+  - path: Racing Siumulator\Temp\UnityTempFile-b6863a439ef794348b0d21eca2e241ca
+    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Temp\UnityTempFile-b6863a439ef794348b0d21eca2e241ca
+    projectPath: Temp\UnityTempFile-b6863a439ef794348b0d21eca2e241ca
+    originalPath: 
+    indexStatus: 1
+    workTreeStatus: 1
+  - path: Racing Siumulator\Temp\UnityTempFile-b9ae22a437f8ea04b86accd8f84af2c1
+    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Temp\UnityTempFile-b9ae22a437f8ea04b86accd8f84af2c1
+    projectPath: Temp\UnityTempFile-b9ae22a437f8ea04b86accd8f84af2c1
+    originalPath: 
+    indexStatus: 1
+    workTreeStatus: 1
+  - path: Racing Siumulator\Temp\UnityTempFile-f884158f5bb93c1448571845873853c5
+    fullPath: C:\Users\Piotr\Desktop\STUDIA\Symulator_Jazdy\Racing Siumulator\Temp\UnityTempFile-f884158f5bb93c1448571845873853c5
+    projectPath: Temp\UnityTempFile-f884158f5bb93c1448571845873853c5
     originalPath: 
     indexStatus: 1
     workTreeStatus: 1

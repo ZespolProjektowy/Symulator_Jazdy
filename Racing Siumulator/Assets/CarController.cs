@@ -2,18 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarController : PrometeoCarController
+public class CarController : MonoBehaviour
 {
+    public PrometeoCarController Prometeo;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private Vector3 startPosition, startRotation;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public float timeSinceStart = 0f;
+
+    [Header("Fitness")]
+    public float overallFitness;
+    // value distance the most
+    public float distanceMultiplier = 1.4f;
+    // speed has a small impact on fitness
+    public float avgSpeedMultiplier = 0.2f;
+
+    private Vector3 lastPosition;
+    private float totalDistanceTravelled;
+    private float avgSpeed;
+
+    private float[] sensors = new float[5];
+
 }
