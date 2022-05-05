@@ -627,6 +627,21 @@ public class PrometeoCarController : MonoBehaviour
       }
     }
 
+<<<<<<< Updated upstream
+=======
+    public void StopCar(){
+        carRigidbody.velocity = Vector3.zero;
+        throttleAxis = 0f;
+      steeringAxis = 0f;
+     
+      frontLeftCollider.motorTorque = 0;
+      frontRightCollider.motorTorque = 0;
+      rearLeftCollider.motorTorque = 0;
+      rearRightCollider.motorTorque = 0;
+      InvokeRepeating("DecelerateCar", 0f, 0.1f);
+    }
+
+>>>>>>> Stashed changes
     // This function applies brake torque to the wheels according to the brake force given by the user.
     public void Brakes(){
       frontLeftCollider.brakeTorque = brakeForce;
