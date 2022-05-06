@@ -9,19 +9,19 @@ public class CarController : MonoBehaviour
     private Vector3 startPosition;
     private Quaternion startRotation;
 
-    public float timeSinceStart = 0f;
+    public double timeSinceStart = 0f;
 
     [Header("Fitness")]
-    public float overallFitness;
+    public double overallFitness;
     // value distance the most
-    public float distanceMultiplier = 1.4f;
+    public double distanceMultiplier = 1.4f;
     // speed has a small impact on fitness
-    public float avgSpeedMultiplier = 0.2f;
-    public float sensorMultiplier = 0.1f;
+    public double avgSpeedMultiplier = 0.2f;
+    public double sensorMultiplier = 0.1f;
 
     private Vector3 lastPosition;
-    private float totalDistanceTravelled = 0f;
-    private float avgSpeed;
+    private double totalDistanceTravelled = 0f;
+    private double avgSpeed;
 
     
 
@@ -33,7 +33,7 @@ public class CarController : MonoBehaviour
     }
 
     public void Reset(){
-        Prometeo.StopCar();
+        //Prometeo.StopCar();
         timeSinceStart = 0f;
         totalDistanceTravelled = 0f;
         avgSpeed = 0f;
@@ -45,7 +45,7 @@ public class CarController : MonoBehaviour
         if (Prometeo.carRigidbody != null) {
         Prometeo.carRigidbody.velocity = Vector3.zero;
         Prometeo.carRigidbody.angularVelocity = Vector3.zero;
-    }
+      }
     }
 
     private void FixedUpdate(){
@@ -53,7 +53,7 @@ public class CarController : MonoBehaviour
 
         lastPosition = Prometeo.transform.position;
 
-        MoveCar(inputs);
+        //MoveCar(inputs);
 
         timeSinceStart += Time.deltaTime;
 
@@ -97,7 +97,11 @@ public class CarController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+      if(!(collision.gameObject.tag == "Car"))
+      {
         Reset();
+      }
+        
     }
 
     private Color returnHitColor(float hit){
@@ -111,7 +115,8 @@ public class CarController : MonoBehaviour
           return Color.green;
         }
     } 
-    private float[] sensors = new float[5];
+
+    double[] sensors = new double[7];
     private void InputSensors() {
 
         Vector3 a = (Prometeo.transform.forward+Prometeo.transform.right);
@@ -119,13 +124,15 @@ public class CarController : MonoBehaviour
         Vector3 c = (Prometeo.transform.forward-Prometeo.transform.right);
         Vector3 d = (Prometeo.transform.forward+Prometeo.transform.right/2);
         Vector3 e = (Prometeo.transform.forward-Prometeo.transform.right/2);
+        Vector3 f = (Prometeo.transform.forward+Prometeo.transform.right/5);
+        Vector3 g = (Prometeo.transform.forward-Prometeo.transform.right/5);
 
         Ray r = new Ray(Prometeo.transform.position,a);
         RaycastHit hit;
 
         if (Physics.Raycast(r, out hit)) {
             sensors[0] = hit.distance/20;
-            Debug.Log("A: " + hit.distance);
+            //Debug.Log("A: " + hit.distance);
             Debug.DrawRay(Prometeo.transform.position, a*hit.distance, returnHitColor(hit.distance));
             
         }
@@ -136,7 +143,7 @@ public class CarController : MonoBehaviour
 
         if (Physics.Raycast(r, out hit)) {
             sensors[1] = hit.distance/20;
-            Debug.Log("B: " + hit.distance);
+            //Debug.Log("B: " + hit.distance);
             Debug.DrawRay(Prometeo.transform.position, b*hit.distance, returnHitColor(hit.distance));
             
         }
@@ -145,7 +152,7 @@ public class CarController : MonoBehaviour
 
         if (Physics.Raycast(r, out hit)) {
             sensors[2] = hit.distance/20;
-            Debug.Log("C: " + hit.distance);
+            //Debug.Log("C: " + hit.distance);
             Debug.DrawRay(Prometeo.transform.position, c*hit.distance, returnHitColor(hit.distance));
            
         }
@@ -154,7 +161,7 @@ public class CarController : MonoBehaviour
 
         if (Physics.Raycast(r, out hit)) {
             sensors[3] = hit.distance/20;
-            Debug.Log("D: " + hit.distance);
+            //Debug.Log("D: " + hit.distance);
             Debug.DrawRay(Prometeo.transform.position, d*hit.distance, returnHitColor(hit.distance));
            
         }
@@ -163,8 +170,26 @@ public class CarController : MonoBehaviour
 
         if (Physics.Raycast(r, out hit)) {
             sensors[4] = hit.distance/20;
-            Debug.Log("E: " + hit.distance);
+            //Debug.Log("E: " + hit.distance);
             Debug.DrawRay(Prometeo.transform.position, e*hit.distance, returnHitColor(hit.distance));
+           
+        }
+
+        r.direction = f;
+
+        if (Physics.Raycast(r, out hit)) {
+            sensors[5] = hit.distance/20;
+            //Debug.Log("F: " + hit.distance);
+            Debug.DrawRay(Prometeo.transform.position, f*hit.distance, returnHitColor(hit.distance));
+           
+        }
+
+        r.direction = g;
+
+        if (Physics.Raycast(r, out hit)) {
+            sensors[6] = hit.distance/20;
+            //Debug.Log("G: " + hit.distance);
+            Debug.DrawRay(Prometeo.transform.position, g*hit.distance, returnHitColor(hit.distance));
            
         }
 

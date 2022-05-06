@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Car
+  - FLWTag
+  - FRWTag
+  - RLWTag
+  - RRWTag
+  - FLWCTAG
+  - FRWCTag
+  - RLWCTag
+  - RRWCTag
   layers:
   - Default
   - TransparentFX
@@ -15,7 +24,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - CarLayer
   - 
   - 
   - 

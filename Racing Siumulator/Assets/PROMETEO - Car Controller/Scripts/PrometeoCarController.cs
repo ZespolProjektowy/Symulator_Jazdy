@@ -29,8 +29,8 @@ public class PrometeoCarController : MonoBehaviour
       [Range(1, 10)]
       public int accelerationMultiplier = 2; // How fast the car can accelerate. 1 is a slow acceleration and 10 is the fastest.
       [Space(10)]
-      [Range(10, 45)]
-      public int maxSteeringAngle = 27; // The maximum angle that the tires can reach while rotating the steering wheel.
+      [Range(10, 100)]
+      public int maxSteeringAngle = 50; // The maximum angle that the tires can reach while rotating the steering wheel.
       [Range(0.1f, 1f)]
       public float steeringSpeed = 0.5f; // How fast the steering wheel turns.
       [Space(10)]
@@ -166,6 +166,31 @@ public class PrometeoCarController : MonoBehaviour
       //in the inspector.
       carRigidbody = gameObject.GetComponent<Rigidbody>();
       carRigidbody.centerOfMass = bodyMassCenter;
+
+      // public GameObject frontLeftMesh;
+      // public WheelCollider frontLeftCollider;
+      // [Space(10)]
+      // public GameObject frontRightMesh;
+      // public WheelCollider frontRightCollider;
+      // [Space(10)]
+      // public GameObject rearLeftMesh;
+      // public WheelCollider rearLeftCollider;
+      // [Space(10)]
+      // public GameObject rearRightMesh;
+      // public WheelCollider rearRightCollider;
+
+
+      frontLeftMesh=GameObject.FindWithTag("FLWTag");
+      frontRightMesh=GameObject.FindWithTag("FRWTag");
+      rearLeftMesh=GameObject.FindWithTag("RLWTag");
+      rearRightMesh=GameObject.FindWithTag("RRWTag");
+
+      frontLeftCollider=GameObject.FindWithTag("FLWCTAG").GetComponent<WheelCollider>();
+      frontRightCollider=GameObject.FindWithTag("FRWCTag").GetComponent<WheelCollider>();
+      rearLeftCollider=GameObject.FindWithTag("RLWCTag").GetComponent<WheelCollider>();
+      rearRightCollider=GameObject.FindWithTag("RRWCTag").GetComponent<WheelCollider>();
+
+      
 
       //Initial setup to calculate the drift value of the car. This part could look a bit
       //complicated, but do not be afraid, the only thing we're doing here is to save the default
@@ -640,9 +665,6 @@ public class PrometeoCarController : MonoBehaviour
       rearRightCollider.motorTorque = 0f;
       isDrifting = false;
       isTractionLocked = false;
-      ResetSteeringAngle();
-      CancelInvoke("DecelerateCar");
-      Start();
     }
 
     // This function applies brake torque to the wheels according to the brake force given by the user.
