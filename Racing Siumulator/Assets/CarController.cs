@@ -200,7 +200,6 @@ public class CarController : MonoBehaviour
           Prometeo.ResetSteeringAngle();
         }
 
-        Prometeo.AnimateWheelMeshes();
     }
 
 }
