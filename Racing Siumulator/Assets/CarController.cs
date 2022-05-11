@@ -107,10 +107,10 @@ public class CarController : MonoBehaviour
     }
 
     private Color returnHitColor(float hit){
-      if(hit <= 4){
+      if(hit <= 9){
           return Color.red;
         }
-        else if(hit <= 6 && hit > 4){
+        else if(hit <= 15 && hit > 9){
           return new Color(255f, 165f, 0f);
         }
         else {
@@ -146,7 +146,7 @@ public class CarController : MonoBehaviour
         if (Physics.Raycast(r, out hit)) {
             sensors[1] = hit.distance/20;
             //Debug.Log("B: " + hit.distance);
-            Debug.DrawRay(Prometeo.transform.position, b*hit.distance, returnHitColor(hit.distance));
+            Debug.DrawRay(Prometeo.transform.position, b*hit.distance, returnHitColor(hit.distance-8));
             
         }
 
@@ -182,7 +182,7 @@ public class CarController : MonoBehaviour
         if (Physics.Raycast(r, out hit)) {
             sensors[5] = hit.distance/20;
             //Debug.Log("F: " + hit.distance);
-            Debug.DrawRay(Prometeo.transform.position, f*hit.distance, returnHitColor(hit.distance));
+            Debug.DrawRay(Prometeo.transform.position, f*hit.distance, returnHitColor(hit.distance-2));
            
         }
 
@@ -191,7 +191,7 @@ public class CarController : MonoBehaviour
         if (Physics.Raycast(r, out hit)) {
             sensors[6] = hit.distance/20;
             //Debug.Log("G: " + hit.distance);
-            Debug.DrawRay(Prometeo.transform.position, g*hit.distance, returnHitColor(hit.distance));
+            Debug.DrawRay(Prometeo.transform.position, g*hit.distance, returnHitColor(hit.distance-2));
            
         }
 
