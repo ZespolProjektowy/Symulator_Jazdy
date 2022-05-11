@@ -167,18 +167,6 @@ public class PrometeoCarController : MonoBehaviour
       carRigidbody = gameObject.GetComponent<Rigidbody>();
       carRigidbody.centerOfMass = bodyMassCenter;
 
-      // public GameObject frontLeftMesh;
-      // public WheelCollider frontLeftCollider;
-      // [Space(10)]
-      // public GameObject frontRightMesh;
-      // public WheelCollider frontRightCollider;
-      // [Space(10)]
-      // public GameObject rearLeftMesh;
-      // public WheelCollider rearLeftCollider;
-      // [Space(10)]
-      // public GameObject rearRightMesh;
-      // public WheelCollider rearRightCollider;
-
 
       frontLeftMesh=GameObject.FindWithTag("FLWTag");
       frontRightMesh=GameObject.FindWithTag("FRWTag");

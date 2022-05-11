@@ -30,6 +30,7 @@ public class CarController : MonoBehaviour
     public void Awake(){
         startPosition = Prometeo.transform.position;
         startRotation = Prometeo.transform.rotation;
+        lastPosition = startPosition;
     }
 
     public void Reset(){
@@ -51,8 +52,6 @@ public class CarController : MonoBehaviour
     private void FixedUpdate(){
         InputSensors();
 
-        lastPosition = Prometeo.transform.position;
-
         //MoveCar(inputs);
 
         timeSinceStart += Time.deltaTime;
@@ -69,8 +68,11 @@ public class CarController : MonoBehaviour
        Debug.Log("Lz: " + lastPosition.z);
 
 
-        totalDistanceTravelled = Vector3.Distance(Prometeo.transform.position,startPosition);
-        avgSpeed = totalDistanceTravelled/timeSinceStart;
+      totalDistanceTravelled += Vector3.Distance(Prometeo.transform.position,lastPosition);
+
+      lastPosition = Prometeo.transform.position;
+      
+      avgSpeed = totalDistanceTravelled/timeSinceStart;
 
        overallFitness = 
        (totalDistanceTravelled*distanceMultiplier)
@@ -79,7 +81,7 @@ public class CarController : MonoBehaviour
 
        
 
-       //Debug.Log(totalDistanceTravelled);
+       Debug.Log("total: " + totalDistanceTravelled);
 
         // if (timeSinceStart > 20 && overallFitness < 40) {
         //     Reset();
