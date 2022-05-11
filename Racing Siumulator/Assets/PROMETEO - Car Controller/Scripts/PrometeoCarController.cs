@@ -657,8 +657,8 @@ public class PrometeoCarController : MonoBehaviour
 
     // This function applies brake torque to the wheels according to the brake force given by the user.
     public void Brakes(){
-      frontLeftCollider.brakeTorque = brakeForce;
-      frontRightCollider.brakeTorque = brakeForce;
+      //frontLeftCollider.brakeTorque = brakeForce;
+      //frontRightCollider.brakeTorque = brakeForce;
       rearLeftCollider.brakeTorque = brakeForce;
       rearRightCollider.brakeTorque = brakeForce;
     }
