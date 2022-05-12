@@ -6,7 +6,10 @@ using MathNet.Numerics.LinearAlgebra; //matrices
 
 public class GeneticAlgorithm : MonoBehaviour
 {
-    [Header("Refernce")]
+    [Range(0.5f, 50.0f)]
+    public float timescale = 1f;
+
+    [Header("Reference")]
     public CarController controller;
 
     [Header("Population")]
@@ -23,7 +26,7 @@ public class GeneticAlgorithm : MonoBehaviour
     private List<int> genePool = new List<int>();
 
     private int selectedCount;
-    //private NeuralNetwork[] population;
+    private NeuralNetwork[] population;
 
     [Header("Population tracker")]
     public int currentGen = 0;
@@ -31,209 +34,214 @@ public class GeneticAlgorithm : MonoBehaviour
 
     private void Start()
     {
-        //InitialisePopulation();
+        InitialisePopulation();
+        Time.timeScale = timescale;
     }
 
-    // private void InitialisePopulation()
-    // {
-    //     population = new NeuralNetwork[initialPopulation];
-    //     RandomPopulate(population, 0);
-    //     ResetToCurrentGenome();
-    // }
+    private void FixedUpdate(){
+        Time.timeScale = timescale;
+    }
 
-    // private void RandomPopulate(NeuralNetwork[] newPop, int i)
-    // {
-    //     while (i < initialPopulation)
-    //     {
-    //         newPop[i] = new NeuralNetwork();
-    //         newPop[i].Initialise(controller.layers, controller.neurons);
-    //         i++;
-    //     }
-    // }
+    private void InitialisePopulation()
+    {
+        population = new NeuralNetwork[initialPopulation];
+        RandomPopulate(population, 0);
+        ResetToCurrentGenome();
+    }
 
-    // private void ResetToCurrentGenome()
-    // {
-    //     controller.ResetNetwork(population[currentChrom]);
-    // }
+    private void RandomPopulate(NeuralNetwork[] newPop, int i)
+    {
+        while (i < initialPopulation)
+        {
+            newPop[i] = new NeuralNetwork();
+            newPop[i].Initialise(controller.layers, controller.neurons);
+            i++;
+        }
+    }
 
-    // //car controller sends fitness value and network details for evaluation on death
-    // public void Death(float passedFitness, NeuralNetwork nn)
-    // {
-    //     if (currentChrom < population.Length - 1)
-    //     {
-    //         population[currentChrom].fitness = passedFitness;
-    //         currentChrom++;
-    //         ResetToCurrentGenome();
-    //     }
-    //     else
-    //     {
-    //         Repopulate();
-    //     }
-    // }
+    private void ResetToCurrentGenome()
+    {
+        controller.ResetNetwork(population[currentChrom]);
+    }
 
-    // private void Repopulate()
-    // {
-    //     controller.decreaseEpoch();
-    //     controller.checkEpoch();
-    //     genePool.Clear();
-    //     currentGen++;
-    //     selectedCount = 0;
-    //     SortPopulation();
-    //     NeuralNetwork[] newPop = PickBest();
+    //car controller sends fitness value and network details for evaluation on death
+    public void Death(float passedFitness, NeuralNetwork nn)
+    {
+        if (currentChrom < population.Length - 1)
+        {
+            population[currentChrom].fitness = passedFitness;
+            currentChrom++;
+            ResetToCurrentGenome();
+        }
+        else
+        {
+            Repopulate();
+        }
+    }
 
-    //     Crossover(newPop);
-    //     Mutation(newPop);
+    private void Repopulate()
+    {
+        controller.decreaseEpoch();
+        controller.checkEpoch();
+        genePool.Clear();
+        currentGen++;
+        selectedCount = 0;
+        SortPopulation();
+        NeuralNetwork[] newPop = PickBest();
 
-    //     RandomPopulate(newPop, selectedCount);
+        Crossover(newPop);
+        Mutation(newPop);
 
-    //     currentChrom = 0;
-    //     ResetToCurrentGenome();
-    // }
+        RandomPopulate(newPop, selectedCount);
 
-    // public void Crossover(NeuralNetwork[] newPop)
-    // {
-    //     for (int i = 0; i < crossoverAmount; i += 2)
-    //     {
-    //         int point1 = i;
-    //         int point2 = i + 1;
-    //         if (genePool.Count > 0)
-    //         {
-    //             for (int j = 0; j < 100; j++)
-    //             {
-    //                 point1 = genePool[Random.Range(0, genePool.Count)];
-    //                 point2 = genePool[Random.Range(0, genePool.Count)];
+        currentChrom = 0;
+        ResetToCurrentGenome();
+    }
 
-    //                 if (point1 != point2)
-    //                 {
-    //                     break;
-    //                 }
-    //             }
-    //         }
+    public void Crossover(NeuralNetwork[] newPop)
+    {
+        for (int i = 0; i < crossoverAmount; i += 2)
+        {
+            int point1 = i;
+            int point2 = i + 1;
+            if (genePool.Count > 0)
+            {
+                for (int j = 0; j < 100; j++)
+                {
+                    point1 = genePool[Random.Range(0, genePool.Count)];
+                    point2 = genePool[Random.Range(0, genePool.Count)];
 
-    //         NeuralNetwork offspring1 = new NeuralNetwork();
-    //         NeuralNetwork offspring2 = new NeuralNetwork();
-    //         offspring1.Initialise(controller.layers, controller.neurons);
-    //         offspring2.Initialise(controller.layers, controller.neurons);
-    //         offspring1.fitness = 0;
-    //         offspring2.fitness = 0;
+                    if (point1 != point2)
+                    {
+                        break;
+                    }
+                }
+            }
 
-    //         for (int k = 0; k < offspring1.weights.Count; k++)
-    //         {
-    //             if (Random.Range(0.0f, 1.0f) < 0.5f)
-    //             {
-    //                 offspring1.weights[k] = population[point1].weights[k];
-    //                 offspring2.weights[k] = population[point2].weights[k];
-    //             }
-    //             else
-    //             {
-    //                 offspring1.weights[k] = population[point2].weights[k];
-    //                 offspring2.weights[k] = population[point1].weights[k];
-    //             }
-    //         }
+            NeuralNetwork offspring1 = new NeuralNetwork();
+            NeuralNetwork offspring2 = new NeuralNetwork();
+            offspring1.Initialise(controller.layers, controller.neurons);
+            offspring2.Initialise(controller.layers, controller.neurons);
+            offspring1.fitness = 0;
+            offspring2.fitness = 0;
 
-    //         for (int l = 0; l < offspring1.biases.Count; l++)
-    //         {
-    //             if (Random.Range(0.0f, 1.0f) < 0.5f)
-    //             {
-    //                 offspring1.biases[l] = population[point1].biases[l];
-    //                 offspring2.biases[l] = population[point2].biases[l];
-    //             }
-    //             else
-    //             {
-    //                 offspring1.biases[l] = population[point2].biases[l];
-    //                 offspring2.biases[l] = population[point1].biases[l];
-    //             }
-    //         }
+            for (int k = 0; k < offspring1.weights.Count; k++)
+            {
+                if (Random.Range(0.0f, 1.0f) < 0.5f)
+                {
+                    offspring1.weights[k] = population[point1].weights[k];
+                    offspring2.weights[k] = population[point2].weights[k];
+                }
+                else
+                {
+                    offspring1.weights[k] = population[point2].weights[k];
+                    offspring2.weights[k] = population[point1].weights[k];
+                }
+            }
 
-    //         newPop[selectedCount] = offspring1;
-    //         selectedCount++;
-    //         newPop[selectedCount] = offspring2;
-    //         selectedCount++;
-    //     }
-    // }
+            for (int l = 0; l < offspring1.biases.Count; l++)
+            {
+                if (Random.Range(0.0f, 1.0f) < 0.5f)
+                {
+                    offspring1.biases[l] = population[point1].biases[l];
+                    offspring2.biases[l] = population[point2].biases[l];
+                }
+                else
+                {
+                    offspring1.biases[l] = population[point2].biases[l];
+                    offspring2.biases[l] = population[point1].biases[l];
+                }
+            }
 
-    // public void Mutation(NeuralNetwork[] newPop)
-    // {
-    //     for (int i = 0; i < selectedCount; i++)
-    //     {
-    //         for (int j = 0; j < newPop[i].weights.Count; j++)
-    //         {
-    //             if (Random.Range(0.0f, 1.0f) < mutationRate)
-    //             {
-    //                 newPop[i].weights[j] = MutateMatrix(newPop[i].weights[j]);
-    //             }
-    //         }
-    //     }
-    // }
-    // Matrix<float> MutateMatrix(Matrix<float> A)
-    // {
-    //     int randomPoints = Random.Range(1, (A.RowCount * A.ColumnCount) / 7);
-    //     Matrix<float> B = A;
+            newPop[selectedCount] = offspring1;
+            selectedCount++;
+            newPop[selectedCount] = offspring2;
+            selectedCount++;
+        }
+    }
 
-    //     for (int i = 0; i < randomPoints; i++)
-    //     {
-    //         int randomColumn = Random.Range(0, B.ColumnCount);
-    //         int randomRow = Random.Range(0, B.RowCount);
-    //         B[randomRow, randomColumn] = Mathf.Clamp(B[randomRow, randomColumn] + Random.Range(-1f, 1f), -1f, 1f);
-    //     }
+    public void Mutation(NeuralNetwork[] newPop)
+    {
+        for (int i = 0; i < selectedCount; i++)
+        {
+            for (int j = 0; j < newPop[i].weights.Count; j++)
+            {
+                if (Random.Range(0.0f, 1.0f) < mutationRate)
+                {
+                    newPop[i].weights[j] = MutateMatrix(newPop[i].weights[j]);
+                }
+            }
+        }
+    }
+    Matrix<float> MutateMatrix(Matrix<float> A)
+    {
+        int randomPoints = Random.Range(1, (A.RowCount * A.ColumnCount) / 7);
+        Matrix<float> B = A;
 
-    //     return B;
-    // }
+        for (int i = 0; i < randomPoints; i++)
+        {
+            int randomColumn = Random.Range(0, B.ColumnCount);
+            int randomRow = Random.Range(0, B.RowCount);
+            B[randomRow, randomColumn] = Mathf.Clamp(B[randomRow, randomColumn] + Random.Range(-1f, 1f), -1f, 1f);
+        }
 
-    // private void SortPopulation()
-    // {
-    //     for (int i = 0; i < population.Length; i++)
-    //     {
-    //         for (int j = 0; j < population.Length; j++)
-    //         {
-    //             if (population[i].fitness < population[j].fitness)
-    //             {
-    //                 NeuralNetwork temp = population[i];
-    //                 population[i] = population[j];
-    //                 population[j] = temp;
-    //             }
-    //         }
-    //     }
-    // }
+        return B;
+    }
 
-    // private NeuralNetwork[] PickBest()
-    // {
-    //     NeuralNetwork[] newPop = new NeuralNetwork[initialPopulation];
+    private void SortPopulation()
+    {
+        for (int i = 0; i < population.Length; i++)
+        {
+            for (int j = 0; j < population.Length; j++)
+            {
+                if (population[i].fitness < population[j].fitness)
+                {
+                    NeuralNetwork temp = population[i];
+                    population[i] = population[j];
+                    population[j] = temp;
+                }
+            }
+        }
+    }
 
-    //     for (int i = 0; i < selectBest; i++)
-    //     {
-    //         newPop[selectedCount] = population[i].InitialiseCopy(controller.layers, controller.neurons);
-    //         newPop[selectedCount].fitness = 0;
-    //         selectedCount++;
+    private NeuralNetwork[] PickBest()
+    {
+        NeuralNetwork[] newPop = new NeuralNetwork[initialPopulation];
 
-    //         int f = Mathf.RoundToInt(population[i].fitness * 10);
-    //         for (int x = 0; x < f; x++)
-    //         {
-    //             genePool.Add(i);
-    //         }
-    //     }
+        for (int i = 0; i < selectBest; i++)
+        {
+            newPop[selectedCount] = population[i].InitialiseCopy(controller.layers, controller.neurons);
+            newPop[selectedCount].fitness = 0;
+            selectedCount++;
 
-    //     for (int j = 0; j < selectWorst; j++)
-    //     {
-    //         int last = population.Length - 1;
-    //         last -= j;
+            int f = Mathf.RoundToInt(population[i].fitness * 10);
+            for (int x = 0; x < f; x++)
+            {
+                genePool.Add(i);
+            }
+        }
 
-    //         int g = Mathf.RoundToInt(population[last].fitness * 10);
-    //         for (int y = 0; y < g; y++)
-    //         {
-    //             genePool.Add(last);
-    //         }
-    //     }
-    //     return newPop;
-    // }
+        for (int j = 0; j < selectWorst; j++)
+        {
+            int last = population.Length - 1;
+            last -= j;
 
-    // public int getChromCount()
-    // {
-    //     return currentChrom;
-    // }
+            int g = Mathf.RoundToInt(population[last].fitness * 10);
+            for (int y = 0; y < g; y++)
+            {
+                genePool.Add(last);
+            }
+        }
+        return newPop;
+    }
 
-    // public int getGenCount()
-    // {
-    //     return currentGen;
-    // }
+    public int getChromCount()
+    {
+        return currentChrom;
+    }
+
+    public int getGenCount()
+    {
+        return currentGen;
+    }
 }

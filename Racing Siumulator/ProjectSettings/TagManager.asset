@@ -13,6 +13,7 @@ TagManager:
   - FRWCTag
   - RLWCTag
   - RRWCTag
+  - _GA
   layers:
   - Default
   - TransparentFX
