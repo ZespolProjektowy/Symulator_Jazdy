@@ -28,9 +28,25 @@ public class CarController : MonoBehaviour
     private int[] inputs = new int[4];
 
     public void Awake(){
+<<<<<<< Updated upstream
         startPosition = Prometeo.transform.position;
         startRotation = Prometeo.transform.rotation;
         lastPosition = startPosition;
+=======
+       // geneticAlgorithm = GameObject.Find("Genetic Algorithm").GetComponent<GeneticAlgorithm>();
+
+        startPosition = Prometeo.transform.position;
+        startRotation = Prometeo.transform.rotation;
+        lastPosition = startPosition;
+
+       // network = GetComponent<NeuralNetwork>();
+    }
+
+    public void ResetNetwork(NeuralNetwork neural)
+    {
+        network = neural;
+        Reset();
+>>>>>>> Stashed changes
     }
 
     public void Reset(){
@@ -101,7 +117,13 @@ public class CarController : MonoBehaviour
     {
       if(!(collision.gameObject.tag == "Car"))
       {
+<<<<<<< Updated upstream
         Reset();
+=======
+          Reset();
+        GameObject.FindObjectOfType<GeneticAlgorithm>().Death(overallFitness, network);
+        
+>>>>>>> Stashed changes
       }
         
     }

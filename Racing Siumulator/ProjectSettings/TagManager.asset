@@ -13,6 +13,11 @@ TagManager:
   - FRWCTag
   - RLWCTag
   - RRWCTag
+<<<<<<< Updated upstream
+=======
+  - _GA
+  - start_pos
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX

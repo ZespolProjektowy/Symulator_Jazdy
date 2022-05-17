@@ -279,7 +279,84 @@ public class PrometeoCarController : MonoBehaviour
     void Update()
     {
 
+<<<<<<< Updated upstream
       //CAR DATA
+=======
+        //CAR DATA
+
+        // We determine the speed of the car.
+        carSpeed = (2 * Mathf.PI * frontLeftCollider.radius * frontLeftCollider.rpm * 60) / 1000;
+        // Save the local velocity of the car in the x axis. Used to know if the car is drifting.
+        localVelocityX = transform.InverseTransformDirection(carRigidbody.velocity).x;
+        // Save the local velocity of the car in the z axis. Used to know if the car is going forward or backwards.
+        localVelocityZ = transform.InverseTransformDirection(carRigidbody.velocity).z;
+
+        //CAR PHYSICS
+
+        /*
+        The next part is regarding to the car controller. First, it checks if the user wants to use touch controls (for
+        mobile devices) or analog input controls (WASD + Space).
+
+        The following methods are called whenever a certain key is pressed. For example, in the first 'if' we call the
+        method GoForward() if the user has pressed W.
+
+        In this part of the code we specify what the car needs to do if the user presses W (throttle), S (reverse),
+        A (turn left), D (turn right) or Space bar (handbrake).
+        */
+        if (!useAiControls)
+        {
+            MoveCarBot(outputs);
+        }
+        else
+        {
+            if (useTouchControls && touchControlsSetup)
+            {
+
+                if (throttlePTI.buttonPressed)
+                {
+                    CancelInvoke("DecelerateCar");
+                    deceleratingCar = false;
+                    GoForward();
+                }
+                if (reversePTI.buttonPressed)
+                {
+                    CancelInvoke("DecelerateCar");
+                    deceleratingCar = false;
+                    GoReverse();
+                }
+
+                if (turnLeftPTI.buttonPressed)
+                {
+                    TurnLeft();
+                }
+                if (turnRightPTI.buttonPressed)
+                {
+                    TurnRight();
+                }
+                if (handbrakePTI.buttonPressed)
+                {
+                    CancelInvoke("DecelerateCar");
+                    deceleratingCar = false;
+                    Handbrake();
+                }
+                if (!handbrakePTI.buttonPressed)
+                {
+                    RecoverTraction();
+                }
+                if ((!throttlePTI.buttonPressed && !reversePTI.buttonPressed))
+                {
+                    ThrottleOff();
+                }
+                if ((!reversePTI.buttonPressed && !throttlePTI.buttonPressed) && !handbrakePTI.buttonPressed && !deceleratingCar)
+                {
+                    InvokeRepeating("DecelerateCar", 0f, 0.1f);
+                    deceleratingCar = true;
+                }
+                if (!turnLeftPTI.buttonPressed && !turnRightPTI.buttonPressed && steeringAxis != 0f)
+                {
+                    ResetSteeringAngle();
+                }
+>>>>>>> Stashed changes
 
       // We determine the speed of the car.
       carSpeed = (2 * Mathf.PI * frontLeftCollider.radius * frontLeftCollider.rpm * 60) / 1000;
@@ -345,10 +422,19 @@ public class PrometeoCarController : MonoBehaviour
           deceleratingCar = false;
           GoForward();
         }
+<<<<<<< Updated upstream
         if(Input.GetKey(KeyCode.S)){
           CancelInvoke("DecelerateCar");
           deceleratingCar = false;
           GoReverse();
+=======
+        else if(output[0] < 0.5 && !deceleratingCar){
+            InvokeRepeating("DecelerateCar", 0f, 0.1f);
+            deceleratingCar = true;
+        }
+        else{
+            ThrottleOff();
+>>>>>>> Stashed changes
         }
 
         if(Input.GetKey(KeyCode.A)){
