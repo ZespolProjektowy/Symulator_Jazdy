@@ -87,8 +87,8 @@ public class CarController : MonoBehaviour
 
         lastPosition = Prometeo.transform.position;
 
-        (outputs[0], outputs[1]) = network.StartNetwork(sensors[0], sensors[1], sensors[2], sensors[3],
-        sensors[4], sensors[5], sensors[6]);
+        //(outputs[0], outputs[1]) = network.StartNetwork(sensors[0], sensors[1], sensors[2], sensors[3],
+        //sensors[4], sensors[5], sensors[6]);
 
         //Prometeo.setOutputs(outputs);
 
@@ -294,5 +294,10 @@ public class CarController : MonoBehaviour
     private string getPath()
     {
         return Application.dataPath + "sols.csv";
+    }
+
+    public void CheckpointHit()
+    {
+        Debug.Log("ale zajebisty fitness");
     }
 }
