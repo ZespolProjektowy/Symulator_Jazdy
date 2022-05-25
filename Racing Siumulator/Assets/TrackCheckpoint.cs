@@ -22,15 +22,15 @@ public class TrackCheckpoint : MonoBehaviour
        nextCheckpointSingleIndex=0;
     }
 
-    public void PlayerTroughCheckpoint(CheckpointSingle checkpointSingle)
+    public void PlayerTroughCheckpoint(CheckpointSingle checkpointSingle, CarController carController)
     {
         if(checkpointSingleList.IndexOf(checkpointSingle)==nextCheckpointSingleIndex)
         {
         
             //correct checkpoint
             Debug.Log("Correct");
-            nextCheckpointSingleIndex++;
-            checkpointSingle.GetCarController().CheckpointHit();
+            nextCheckpointSingleIndex = (nextCheckpointSingleIndex + 1)%checkpointSingleList.Count;
+            carController.CheckpointHit();
         }
         else
         {
@@ -38,5 +38,10 @@ public class TrackCheckpoint : MonoBehaviour
             Debug.Log("Wrong");
         }
 
+    }
+
+    public void Reset()
+    {
+        nextCheckpointSingleIndex=0;
     }
 }

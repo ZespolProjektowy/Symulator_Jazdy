@@ -327,7 +327,7 @@ public class PrometeoCarController : MonoBehaviour
         In this part of the code we specify what the car needs to do if the user presses W (throttle), S (reverse),
         A (turn left), D (turn right) or Space bar (handbrake).
         */
-        if (!useAiControls)
+        if (useAiControls) //G
         {
             MoveCarBot(outputs);
         }

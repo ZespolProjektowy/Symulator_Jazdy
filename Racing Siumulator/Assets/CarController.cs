@@ -30,6 +30,8 @@ public class CarController : MonoBehaviour
 
     public GeneticAlgorithm geneticAlgorithm;
 
+    public TrackCheckpoint trackCheckpoint;
+
     [Header("Hyperparameters")]
     public int layers = 1;
 
@@ -66,7 +68,7 @@ public class CarController : MonoBehaviour
 
     public void Awake()
     {
-        //geneticAlgorithm = GameObject.Find("Genetic Algorithm").GetComponent<GeneticAlgorithm>();
+     geneticAlgorithm = GameObject.Find("Genetic Algorithm").GetComponent<GeneticAlgorithm>();
         startPosition = Prometeo.transform.position;
         startRotation = Prometeo.transform.rotation;
         lastPosition = startPosition;
@@ -104,9 +106,9 @@ public class CarController : MonoBehaviour
 
         lastPosition = Prometeo.transform.position;
 
-        //(outputs[0], outputs[1]) = network.StartNetwork(sensors[0], sensors[1], sensors[2], sensors[3],
-        //sensors[4], sensors[5], sensors[6]);
-        //Prometeo.setOutputs(outputs);
+         (outputs[0], outputs[1]) = network.StartNetwork(sensors[0], sensors[1], sensors[2], sensors[3],
+         sensors[4], sensors[5], sensors[6]);
+        Prometeo.setOutputs(outputs);
         MoveCarBot (outputs);
 
         //Prometeo.GoForward();
@@ -154,9 +156,9 @@ public class CarController : MonoBehaviour
             overallFitness > 1350
         )
         {
-            GameObject
-                .FindObjectOfType<GeneticAlgorithm>()
-                .Death(overallFitness, network);
+           // GameObject
+            //    .FindObjectOfType<GeneticAlgorithm>()
+            //    .Death(overallFitness, network);
         }
 
         // if ((timeSinceStart > 20 && overallFitness < 50) || overallFitness > 1350)
@@ -176,8 +178,10 @@ public class CarController : MonoBehaviour
     {
         if (!(collision.gameObject.tag == "Car"))
         {
-            //GameObject.FindObjectOfType<GeneticAlgorithm>().Death(overallFitness, network);
-            Reset();
+             GameObject.FindObjectOfType<GeneticAlgorithm>().Death(overallFitness, network);
+            //Reset();
+            trackCheckpoint=GameObject.Find("Road").GetComponent<TrackCheckpoint>();
+            trackCheckpoint.Reset();
         }
     }
 
