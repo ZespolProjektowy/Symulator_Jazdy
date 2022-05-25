@@ -51,7 +51,7 @@ public class CarController : MonoBehaviour
     private float[] sensors = new float[7];
 
     public void Awake(){
-        geneticAlgorithm = GameObject.Find("Genetic Algorithm").GetComponent<GeneticAlgorithm>();
+        //geneticAlgorithm = GameObject.Find("Genetic Algorithm").GetComponent<GeneticAlgorithm>();
 
         startPosition = Prometeo.transform.position;
         startRotation = Prometeo.transform.rotation;
@@ -154,8 +154,8 @@ public class CarController : MonoBehaviour
     {
       if(!(collision.gameObject.tag == "Car"))
       {
-        GameObject.FindObjectOfType<GeneticAlgorithm>().Death(overallFitness, network);
-        //Reset();
+        //GameObject.FindObjectOfType<GeneticAlgorithm>().Death(overallFitness, network);
+        Reset();
       }
         
     }
