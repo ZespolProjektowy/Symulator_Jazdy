@@ -4,15 +4,39 @@ using UnityEngine;
 
 public class TrackCheckpoint : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private List<CheckpointSingle> checkpointSingleList;
+    private int nextCheckpointSingleIndex;
+
+    private void Awake()
     {
-        
+       Transform checkpointsTransform = transform.Find("Spline/Checkpoints");
+       checkpointSingleList=new List<CheckpointSingle>();
+
+       foreach (Transform checkpointSingleTransform in checkpointsTransform)
+       {
+           CheckpointSingle checkpointSingle = checkpointSingleTransform.GetComponent<CheckpointSingle>();
+           checkpointSingle.SetTrackCheckpoints(this);
+           checkpointSingleList.Add(checkpointSingle);
+       }
+
+       nextCheckpointSingleIndex=0;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlayerTroughCheckpoint(CheckpointSingle checkpointSingle)
     {
+        if(checkpointSingleList.IndexOf(checkpointSingle)==nextCheckpointSingleIndex)
+        {
         
+            //correct checkpoint
+            Debug.Log("Correct");
+            nextCheckpointSingleIndex++;
+            checkpointSingle.GetCarController().CheckpointHit();
+        }
+        else
+        {
+            //wrong checkpoint
+            Debug.Log("Wrong");
+        }
+
     }
 }
