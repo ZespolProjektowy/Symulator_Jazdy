@@ -299,7 +299,6 @@ public class PrometeoCarController : MonoBehaviour
     public void setOutputs(float[] outs){
       outputs[0] = outs[0];
       outputs[1] = outs[1];
-      outputs[2] = outs[2];
     }
 
     public bool useAiControls = true;
@@ -441,33 +440,42 @@ public class PrometeoCarController : MonoBehaviour
 
     }
 
+    public Vector3 moveInput;
+
     public void MoveCarBot(float[] output)
     {
+        moveInput = Vector3.Lerp(Vector3.zero,new Vector3(0,0,output[0]*11.4f),0.02f);
+        moveInput = transform.TransformDirection(moveInput);
+        transform.position += moveInput;
 
-        if(output[0] >= 0.5){
-            CancelInvoke("DecelerateCar");
-            deceleratingCar = false;
-            GoForward();
-        }
+        transform.eulerAngles += new Vector3(0, (output[1]*90)*0.02f,0);
+        // if(output[0] >= 0.5){
+        //     CancelInvoke("DecelerateCar");
+        //     deceleratingCar = false;
+        //     GoForward();
+        // }
         // else if(output[0] < 0.5 && !deceleratingCar){
         //     InvokeRepeating("DecelerateCar", 0f, 0.1f);
         //     deceleratingCar = true;
         // }
-        else{
-            ThrottleOff();
-        }
+        // else{
+        //     // ThrottleOff();
+        //     CancelInvoke("DecelerateCar");
+        //             deceleratingCar = false;
+        //             GoReverse();
+        // }
 
-        if(output[1] >= 0.5){
-            TurnLeft();
-        }
+        // if(output[1] >= 0.5){
+        //     TurnLeft();
+        // }
 
-        if(output[2] >= 0.5){
-            TurnRight();
-        }
+        // if(output[2] >= 0.5){
+        //     TurnRight();
+        // }
 
-        if((output[1] < 0.5) && (output[2] < 0.5) && steeringAxis != 0f){
-            ResetSteeringAngle();
-          }
+        // if((output[1] < 0.5) && (output[2] < 0.5) && steeringAxis != 0f){
+        //     ResetSteeringAngle();
+        //   }
 
     }
 
