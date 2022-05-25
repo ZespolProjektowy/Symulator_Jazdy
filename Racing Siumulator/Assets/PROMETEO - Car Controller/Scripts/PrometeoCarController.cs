@@ -9,8 +9,6 @@ something useful for your game. Best regards, Mena.
 */
 
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -296,9 +294,10 @@ public class PrometeoCarController : MonoBehaviour
 
     public float[] outputs = new float[3];
 
-    public void setOutputs(float[] outs){
-      outputs[0] = outs[0];
-      outputs[1] = outs[1];
+    public void setOutputs(float[] outs)
+    {
+        outputs[0] = outs[0];
+        outputs[1] = outs[1];
     }
 
     public bool useAiControls = true;
@@ -444,11 +443,11 @@ public class PrometeoCarController : MonoBehaviour
 
     public void MoveCarBot(float[] output)
     {
-        moveInput = Vector3.Lerp(Vector3.zero,new Vector3(0,0,output[0]*11.4f),0.02f);
+        moveInput = Vector3.Lerp(Vector3.zero, new Vector3(0, 0, output[0] * 11.4f), 0.02f);
         moveInput = transform.TransformDirection(moveInput);
         transform.position += moveInput;
 
-        transform.eulerAngles += new Vector3(0, (output[1]*90)*0.02f,0);
+        transform.eulerAngles += new Vector3(0, (output[1] * 90) * 0.02f, 0);
         // if(output[0] >= 0.5){
         //     CancelInvoke("DecelerateCar");
         //     deceleratingCar = false;

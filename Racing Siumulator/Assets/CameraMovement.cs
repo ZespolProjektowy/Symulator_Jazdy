@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
@@ -13,19 +11,20 @@ public class CameraMovement : MonoBehaviour
     private void Awake()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
-        PointToLookAt = Player.transform.Find("PointToLookAt").gameObject; 
-        
+        PointToLookAt = Player.transform.Find("PointToLookAt").gameObject;
+
     }
 
-    
+
     private void FixedUpdate()
     {
         FollowPlayer();
     }
-    private void FollowPlayer() {
-        
+    private void FollowPlayer()
+    {
+
         gameObject.transform.position = Vector3.Lerp(transform.position, PointToLookAt.transform.position, Time.deltaTime * speed);
         gameObject.transform.LookAt(Player.gameObject.transform.position);
-    
+
     }
 }

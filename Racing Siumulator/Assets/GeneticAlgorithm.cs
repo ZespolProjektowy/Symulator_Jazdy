@@ -1,7 +1,6 @@
-using System.Collections;
+using MathNet.Numerics.LinearAlgebra; //matrices
 using System.Collections.Generic;
 using UnityEngine;
-using MathNet.Numerics.LinearAlgebra; //matrices
 
 
 public class GeneticAlgorithm : MonoBehaviour
@@ -38,7 +37,8 @@ public class GeneticAlgorithm : MonoBehaviour
         Time.timeScale = timescale;
     }
 
-    private void FixedUpdate(){
+    private void FixedUpdate()
+    {
         Time.timeScale = timescale;
     }
 
