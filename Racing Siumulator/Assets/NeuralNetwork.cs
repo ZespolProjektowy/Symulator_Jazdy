@@ -10,7 +10,7 @@ public class NeuralNetwork : MonoBehaviour
     public float fitness;
     public Matrix<float> inputLayer = Matrix<float>.Build.Dense(1, 7);
     public List<Matrix<float>> hiddenLayers = new List<Matrix<float>>();
-    public Matrix<float> outputLayer = Matrix<float>.Build.Dense(1, 3);
+    public Matrix<float> outputLayer = Matrix<float>.Build.Dense(1, 2);
     public List<Matrix<float>> weights = new List<Matrix<float>>();
     public List<float> biases = new List<float>();
 
@@ -44,7 +44,7 @@ public class NeuralNetwork : MonoBehaviour
 
         }
 
-        Matrix<float> OutputWeight = Matrix<float>.Build.Dense(hiddenNeuronCount, 3);
+        Matrix<float> OutputWeight = Matrix<float>.Build.Dense(hiddenNeuronCount, 2);
         weights.Add(OutputWeight);
         biases.Add(Random.Range(-1f, 1f));
 
@@ -119,7 +119,7 @@ public class NeuralNetwork : MonoBehaviour
 
     }
 
-    public (float, float, float) StartNetwork(float a, float b, float c, float d, float e, float f, float g)
+    public (float, float) StartNetwork(float a, float b, float c, float d, float e, float f, float g)
     {
         inputLayer[0, 0] = a;
         inputLayer[0, 1] = b;
@@ -141,7 +141,7 @@ public class NeuralNetwork : MonoBehaviour
         outputLayer = ((hiddenLayers[hiddenLayers.Count - 1] * weights[weights.Count - 1]) + biases[biases.Count - 1]).PointwiseTanh();
 
         //First output is acceleration and second output is steering
-        return (Sigmoid(outputLayer[0, 0]), Sigmoid(outputLayer[0, 1]), Sigmoid(outputLayer[0, 2]));
+        return (Sigmoid(outputLayer[0, 0]), (float)Math.Tanh(outputLayer[0, 1]));
     }
 
     private float Sigmoid(float s)

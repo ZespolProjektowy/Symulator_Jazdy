@@ -39,12 +39,15 @@ public class CarController : MonoBehaviour
     public int generationCount = 0;
     public int solutionCount = 0;
 
+    [Range(-1f,1f)]
+    public float a,t;
+
     private List<int> generationList = new List<int>();
     private List<int> solutionList = new List<int>();
     private string filePath;
     
 
-    private float[] outputs = new float[3];
+    private float[] outputs = new float[2];
     private float[] sensors = new float[7];
 
     public void Awake(){
@@ -82,14 +85,14 @@ public class CarController : MonoBehaviour
     private void FixedUpdate(){
         InputSensors();
 
-        //lastPosition = Prometeo.transform.position;
+        lastPosition = Prometeo.transform.position;
 
-        (outputs[0], outputs[1], outputs[2]) = network.StartNetwork(sensors[0], sensors[1], sensors[2], sensors[3],
+        (outputs[0], outputs[1]) = network.StartNetwork(sensors[0], sensors[1], sensors[2], sensors[3],
         sensors[4], sensors[5], sensors[6]);
 
-        Debug.Log("output1: " + outputs[0]);
+        //Prometeo.setOutputs(outputs);
 
-        Prometeo.setOutputs(outputs);
+        MoveCarBot(outputs);
 
         //Prometeo.GoForward();
 
@@ -100,6 +103,16 @@ public class CarController : MonoBehaviour
         CalculateFitness();
     }
 
+    private Vector3 moveInput;
+
+
+    public void MoveCarBot(float[] output)
+    {
+        moveInput = Vector3.Lerp(Vector3.zero,new Vector3(0,0,output[0]*11.4f),0.02f);
+        moveInput = transform.TransformDirection(moveInput);
+        transform.position += moveInput;
+        transform.eulerAngles += new Vector3(0, (output[1]*45)*0.02f,0);
+    }
     private void CalculateFitness() {
 
 
@@ -110,11 +123,11 @@ public class CarController : MonoBehaviour
       avgSpeed = totalDistanceTravelled/timeSinceStart;
 
        overallFitness = 
-       (totalDistanceTravelled*distanceMultiplier);
-       //+(avgSpeed*avgSpeedMultiplier)
-       //+(((sensors[0]+sensors[1]+sensors[2]+sensors[3]+sensors[4])/5)*sensorMultiplier);
+       (totalDistanceTravelled*distanceMultiplier)
+       +(avgSpeed*avgSpeedMultiplier)
+       +(((sensors[0]+sensors[1]+sensors[2]+sensors[3]+sensors[4])/5)*sensorMultiplier);
 
-       if (timeSinceStart > 40)
+       if ((timeSinceStart > 20 && overallFitness < 50) || overallFitness > 1350)
         {
             GameObject.FindObjectOfType<GeneticAlgorithm>().Death(overallFitness, network);
         }
@@ -244,8 +257,8 @@ public class CarController : MonoBehaviour
     {
         if(this.epoch == 0)
         {
-            writeToFile();
-            Time.timeScale = 0;
+            //writeToFile();
+            //Time.timeScale = 0;
         }
     }
 
