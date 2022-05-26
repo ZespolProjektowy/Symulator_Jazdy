@@ -293,6 +293,7 @@ public class PrometeoCarController : MonoBehaviour
     }
 
     public float[] outputs = new float[3];
+    public float[] outputs2 = new float[2];
 
     public void setOutputs(float[] outs)
     {
@@ -300,7 +301,14 @@ public class PrometeoCarController : MonoBehaviour
         outputs[1] = outs[1];
     }
 
+    public void setOutputs2(float[] outs)
+    {
+        outputs2[0] = outs[0];
+        outputs2[1] = outs[1];
+    }
+
     public bool useAiControls = true;
+    public bool useBPControls = true;
 
     // Update is called once per frame
     void Update()
@@ -327,9 +335,27 @@ public class PrometeoCarController : MonoBehaviour
         In this part of the code we specify what the car needs to do if the user presses W (throttle), S (reverse),
         A (turn left), D (turn right) or Space bar (handbrake).
         */
-        if (useAiControls) //G
+        if (!useAiControls) //G
         {
             MoveCarBot(outputs);
+        }
+        else if(useBPControls)
+        {
+            if (outputs2[0]>0)
+                {
+                    CancelInvoke("DecelerateCar");
+                    deceleratingCar = false;
+                    GoForward();
+                }
+                
+                if (outputs2[1]<-0.7)
+                {
+                    TurnLeft();
+                }
+                if (outputs2[1]>0.7)
+                {
+                    TurnRight();
+                }
         }
         else
         {
