@@ -11,6 +11,7 @@ something useful for your game. Best regards, Mena.
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = System.Random;
 
 public class PrometeoCarController : MonoBehaviour
 {
@@ -335,6 +336,9 @@ public class PrometeoCarController : MonoBehaviour
         In this part of the code we specify what the car needs to do if the user presses W (throttle), S (reverse),
         A (turn left), D (turn right) or Space bar (handbrake).
         */
+        Random random = new Random();
+        float chance;
+        float deadzone = 0.2f;
         if (!useAiControls) //G
         {
             MoveCarBot(outputs);
@@ -342,20 +346,44 @@ public class PrometeoCarController : MonoBehaviour
         else if(useBPControls)
         {
             if (outputs2[0]>0)
-                {
-                    CancelInvoke("DecelerateCar");
-                    deceleratingCar = false;
-                    GoForward();
-                }
+            {
+                CancelInvoke("DecelerateCar");
+                deceleratingCar = false;
+                GoForward();
+            }  
+            else
+            {
+                ThrottleOff();
+            }
+            //Debug.Log(outputs2[1].ToString());              
+            if (outputs2[1]<-deadzone)
+            {
                 
-                if (outputs2[1]<-0.7)
-                {
+                // chance=(float)random.NextDouble()*-1;
+                // if(chance>=outputs2[1])
+                // {
+                //     Debug.Log("lucky");
                     TurnLeft();
-                }
-                if (outputs2[1]>0.7)
-                {
+                // }
+                // else
+                // Debug.Log("NOT lucky");
+            }
+            if (outputs2[1]>deadzone)
+            {
+                // chance=(float)random.NextDouble();
+                // if(chance<=outputs2[1])
+                // {
+                //     Debug.Log("lucky");
                     TurnRight();
-                }
+                // }
+                // else
+                // Debug.Log("NOT lucky");
+            }
+            if (!(outputs2[1]<-deadzone) && !(outputs2[1]>deadzone) && steeringAxis != 0f)
+            {
+                ResetSteeringAngle();
+            }
+            
         }
         else
         {

@@ -73,7 +73,7 @@ public class CarController : MonoBehaviour
     public void Awake()
     {
 
-//     geneticAlgorithm = GameObject.Find("Genetic Algorithm").GetComponent<GeneticAlgorithm>();
+     //geneticAlgorithm = GameObject.Find("Genetic Algorithm").GetComponent<GeneticAlgorithm>();
         backPropagation = GameObject.Find("Back Propagation").GetComponent<BackPropagation>();
         startPosition = Prometeo.transform.position;
         startRotation = Prometeo.transform.rotation;
