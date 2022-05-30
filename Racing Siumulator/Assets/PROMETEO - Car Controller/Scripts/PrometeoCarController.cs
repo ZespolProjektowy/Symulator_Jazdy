@@ -339,7 +339,7 @@ public class PrometeoCarController : MonoBehaviour
         */
         Random random = new Random();
         float chance;
-        float deadzone = 0.2f;
+        float deadzone = 0.3f;
         if (!useAiControls) //G
         {
             MoveCarBot(outputs);
