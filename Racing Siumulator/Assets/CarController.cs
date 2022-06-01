@@ -73,8 +73,8 @@ public class CarController : MonoBehaviour
     public void Awake()
     {
 
-     //geneticAlgorithm = GameObject.Find("Genetic Algorithm").GetComponent<GeneticAlgorithm>();
-        backPropagation = GameObject.Find("Back Propagation").GetComponent<BackPropagation>();
+     geneticAlgorithm = GameObject.Find("Genetic Algorithm").GetComponent<GeneticAlgorithm>();
+      backPropagation = GameObject.Find("Back Propagation").GetComponent<BackPropagation>();
         startPosition = Prometeo.transform.position;
         startRotation = Prometeo.transform.rotation;
         lastPosition = startPosition;
@@ -120,14 +120,16 @@ public class CarController : MonoBehaviour
 
         lastPosition = Prometeo.transform.position;
 
-         //(outputs[0], outputs[1]) = network.StartNetwork(sensors[0], sensors[1], sensors[2], sensors[3],
-         //sensors[4], sensors[5], sensors[6]);
+         (outputs[0], outputs[1]) = network.StartNetwork(sensors[0], sensors[1], sensors[2], sensors[3],
+         sensors[4], sensors[5], sensors[6]);
          outputs2[0]= backPropagation.Calculate(sensors,0);
          outputs2[1]= backPropagation.Calculate(sensors,1);
          Prometeo.setOutputs2(outputs2);
         Prometeo.setOutputs(outputs);
+        if(Prometeo.useAiControls)
+        {
         MoveCarBot (outputs);
-
+        }
 
         //Prometeo.GoForward();
         //MoveCar(outputs);
@@ -215,7 +217,10 @@ public class CarController : MonoBehaviour
     {
         if (!(collision.gameObject.tag == "Car"))
         {
-             //GameObject.FindObjectOfType<GeneticAlgorithm>().Death(overallFitness, network);
+            if(Prometeo.useAiControls)
+            {
+            GameObject.FindObjectOfType<GeneticAlgorithm>().Death(overallFitness, network);
+            }
             Reset();
             trackCheckpoint=GameObject.Find("Road").GetComponent<TrackCheckpoint>();
             trackCheckpoint.Reset();
@@ -256,10 +261,10 @@ public class CarController : MonoBehaviour
             sensors[0] = hit.distance / 20;
 
             //Debug.Log("A: " + hit.distance);
-            Debug
-                .DrawRay(Prometeo.transform.position,
-                a * hit.distance,
-                returnHitColor(hit.distance));
+            // Debug
+            //     .DrawRay(Prometeo.transform.position,
+            //     a * hit.distance,
+            //     returnHitColor(hit.distance));
         }
 
         r.direction = b;
@@ -272,7 +277,7 @@ public class CarController : MonoBehaviour
             Debug
                 .DrawRay(Prometeo.transform.position,
                 b * hit.distance,
-                returnHitColor(hit.distance - 8));
+                returnHitColor(hit.distance));
         }
 
         r.direction = c;
@@ -282,10 +287,10 @@ public class CarController : MonoBehaviour
             sensors[2] = hit.distance / 20;
 
             //Debug.Log("C: " + hit.distance);
-            Debug
-                .DrawRay(Prometeo.transform.position,
-                c * hit.distance,
-                returnHitColor(hit.distance));
+            // Debug
+            //     .DrawRay(Prometeo.transform.position,
+            //     c * hit.distance,
+            //     returnHitColor(hit.distance));
         }
 
         r.direction = d;
@@ -324,7 +329,7 @@ public class CarController : MonoBehaviour
             Debug
                 .DrawRay(Prometeo.transform.position,
                 f * hit.distance,
-                returnHitColor(hit.distance - 2));
+                returnHitColor(hit.distance));
         }
 
         r.direction = g;
@@ -337,7 +342,7 @@ public class CarController : MonoBehaviour
             Debug
                 .DrawRay(Prometeo.transform.position,
                 g * hit.distance,
-                returnHitColor(hit.distance - 2));
+                returnHitColor(hit.distance));
         }
     }
 
