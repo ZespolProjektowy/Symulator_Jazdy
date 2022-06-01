@@ -108,19 +108,50 @@ public class PrometeoCarController : MonoBehaviour
     [Space(20)]
     //[Header("CONTROLS")]
     [Space(10)]
+    
     //The following variables lets you to set up touch controls for mobile devices.
+    [HideInInspector]
     public bool useTouchControls = false;
+    [HideInInspector]
     public GameObject throttleButton;
+    [HideInInspector]
     PrometeoTouchInput throttlePTI;
+    [HideInInspector]
     public GameObject reverseButton;
+    [HideInInspector]
     PrometeoTouchInput reversePTI;
+    [HideInInspector]
     public GameObject turnRightButton;
+    [HideInInspector]
     PrometeoTouchInput turnRightPTI;
+    [HideInInspector]
     public GameObject turnLeftButton;
+    [HideInInspector]
     PrometeoTouchInput turnLeftPTI;
+    [HideInInspector]
     public GameObject handbrakeButton;
+    [HideInInspector]
     PrometeoTouchInput handbrakePTI;
+   
+    
+    public enum Controls
+    {
+        playerControls,
+        aIControls,
+        bPAIControls
+    };
+    [Space(20)]
+    public Controls whichControls = Controls.playerControls;
+    [Space(20)]
+    
+    [HideInInspector]
+    public bool usePlayerControls=true;
+    [HideInInspector]
+    public bool useAiControls=false;
+    [HideInInspector]
+    public bool useBPControls=false;
 
+    
     //CAR DATA
 
     [HideInInspector]
@@ -135,31 +166,66 @@ public class PrometeoCarController : MonoBehaviour
     /*
     IMPORTANT: The following variables should not be modified manually since their values are automatically given via script.
     */
+    [HideInInspector]
     public Rigidbody carRigidbody; // Stores the car's rigidbody.
+    [HideInInspector]
     public float steeringAxis; // Used to know whether the steering wheel has reached the maximum value. It goes from -1 to 1.
+    [HideInInspector]
     float throttleAxis; // Used to know whether the throttle has reached the maximum value. It goes from -1 to 1.
+    [HideInInspector]
     float driftingAxis;
+    [HideInInspector]
     float localVelocityZ;
+    [HideInInspector]
     float localVelocityX;
+    [HideInInspector]
     public bool deceleratingCar;
+    [HideInInspector]
     bool touchControlsSetup = false;
     /*
     The following variables are used to store information about sideways friction of the wheels (such as
     extremumSlip,extremumValue, asymptoteSlip, asymptoteValue and stiffness). We change this values to
     make the car to start drifting.
     */
+    [HideInInspector]
     WheelFrictionCurve FLwheelFriction;
+    [HideInInspector]
     float FLWextremumSlip;
+    [HideInInspector]
     WheelFrictionCurve FRwheelFriction;
+    [HideInInspector]
     float FRWextremumSlip;
+    [HideInInspector]
     WheelFrictionCurve RLwheelFriction;
+    [HideInInspector]
     float RLWextremumSlip;
+    [HideInInspector]
     WheelFrictionCurve RRwheelFriction;
+    [HideInInspector]
     float RRWextremumSlip;
 
     // Start is called before the first frame update
     void Start()
     {
+       if(whichControls==Controls.playerControls)
+       {
+            usePlayerControls=true;
+            useAiControls=false;
+            useBPControls=false;
+       }
+       else if(whichControls==Controls.aIControls)
+       {
+            usePlayerControls=false;
+            useAiControls=true;
+            useBPControls=false;
+       }
+       else if(whichControls==Controls.bPAIControls)
+       {
+            usePlayerControls=false;
+            useAiControls=false;
+            useBPControls=true;
+       }
+   
         //In this part, we set the 'carRigidbody' value with the Rigidbody attached to this
         //gameObject. Also, we define the center of mass of the car with the Vector3 given
         //in the inspector.
@@ -293,7 +359,9 @@ public class PrometeoCarController : MonoBehaviour
 
     }
 
+    [HideInInspector]
     public float[] outputs = new float[3];
+    [HideInInspector]
     public float[] outputs2 = new float[2];
 
     public void setOutputs(float[] outs)
@@ -308,8 +376,7 @@ public class PrometeoCarController : MonoBehaviour
         outputs2[1] = outs[1];
     }
 
-    public bool useAiControls = true;
-    public bool useBPControls = true;
+    
 
     // Update is called once per frame
     void Update()
@@ -338,12 +405,12 @@ public class PrometeoCarController : MonoBehaviour
         */
         Random random = new Random();
         float chance;
-        float deadzone = 0.3f;
-        if (!useAiControls) //G
-        {
-            MoveCarBot(outputs);
-        }
-        else if(useBPControls)
+        float deadzone = 0.25f;
+        // if (useAiControls)
+        // {
+        //     MoveCarBot(outputs);
+        // }
+        if(useBPControls)
         {
             if (outputs2[0]>0)
             {
@@ -493,6 +560,7 @@ public class PrometeoCarController : MonoBehaviour
 
     }
 
+    [HideInInspector]
     public Vector3 moveInput;
 
     public void MoveCarBot(float[] output)
