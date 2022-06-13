@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using UnityEngine;
 
 public class CarController : MonoBehaviour
@@ -10,7 +8,7 @@ public class CarController : MonoBehaviour
     public PrometeoCarController Prometeo;
 
     private NeuralNetwork network;
-     private NeuralNetwork_BP network2;
+    private NeuralNetwork_BP network2;
 
     private Vector3 startPosition;
 
@@ -73,15 +71,15 @@ public class CarController : MonoBehaviour
     public void Awake()
     {
 
-     geneticAlgorithm = GameObject.Find("Genetic Algorithm").GetComponent<GeneticAlgorithm>();
-      backPropagation = GameObject.Find("Back Propagation").GetComponent<BackPropagation>();
+        geneticAlgorithm = GameObject.Find("Genetic Algorithm").GetComponent<GeneticAlgorithm>();
+        backPropagation = GameObject.Find("Back Propagation").GetComponent<BackPropagation>();
         startPosition = Prometeo.transform.position;
         startRotation = Prometeo.transform.rotation;
         lastPosition = startPosition;
 
-        network2= GetComponent<NeuralNetwork_BP>();
+        network2 = GetComponent<NeuralNetwork_BP>();
         network = GetComponent<NeuralNetwork>();
-        using(StreamWriter writetext = new StreamWriter("write.txt"))
+        using (StreamWriter writetext = new StreamWriter("write.txt"))
         {
 
         }
@@ -120,38 +118,38 @@ public class CarController : MonoBehaviour
 
         lastPosition = Prometeo.transform.position;
 
-         (outputs[0], outputs[1]) = network.StartNetwork(sensors[0], sensors[1], sensors[2], sensors[3],
-         sensors[4], sensors[5], sensors[6]);
-         outputs2[0]= backPropagation.Calculate(sensors,0);
-         outputs2[1]= backPropagation.Calculate(sensors,1);
-         Prometeo.setOutputs2(outputs2);
+        (outputs[0], outputs[1]) = network.StartNetwork(sensors[0], sensors[1], sensors[2], sensors[3],
+        sensors[4], sensors[5], sensors[6]);
+        outputs2[0] = backPropagation.Calculate(sensors, 0);
+        outputs2[1] = backPropagation.Calculate(sensors, 1);
+        Prometeo.setOutputs2(outputs2);
         Prometeo.setOutputs(outputs);
-        if(Prometeo.useAiControls)
+        if (Prometeo.useAiControls)
         {
-        MoveCarBot (outputs);
+            MoveCarBot(outputs);
         }
 
         //Prometeo.GoForward();
         //MoveCar(outputs);
         timeSinceStart += Time.deltaTime;
-        accKey=-1;
-        strKey=0;
+        accKey = -1;
+        strKey = 0;
         if (Input.GetKey(KeyCode.W))
-                {
-                    accKey=1;
-                }
-                
-                if (Input.GetKey(KeyCode.A))
-                {
-                   strKey=-1;
-                }
-                if (Input.GetKey(KeyCode.D))
-                {
-                    strKey=1;
-                }
-        using(StreamWriter writetext = new StreamWriter("write.txt", append:true))
         {
-            writetext.WriteLine(sensors[0].ToString()+" "+ sensors[1].ToString()+" "+ sensors[2].ToString()+" "+ sensors[3].ToString()+" "+ sensors[4].ToString()+" "+ sensors[5].ToString()+" "+ sensors[6].ToString()+" "+accKey.ToString()+",0 "+strKey.ToString()+",0");
+            accKey = 1;
+        }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            strKey = -1;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            strKey = 1;
+        }
+        using (StreamWriter writetext = new StreamWriter("write.txt", append: true))
+        {
+            writetext.WriteLine(sensors[0].ToString() + " " + sensors[1].ToString() + " " + sensors[2].ToString() + " " + sensors[3].ToString() + " " + sensors[4].ToString() + " " + sensors[5].ToString() + " " + sensors[6].ToString() + " " + accKey.ToString() + ",0 " + strKey.ToString() + ",0");
         }
 
         CalculateFitness();
@@ -195,7 +193,7 @@ public class CarController : MonoBehaviour
             overallFitness > 1350
         )
         {
-           // GameObject
+            // GameObject
             //    .FindObjectOfType<GeneticAlgorithm>()
             //    .Death(overallFitness, network);
         }
@@ -217,12 +215,12 @@ public class CarController : MonoBehaviour
     {
         if (!(collision.gameObject.tag == "Car"))
         {
-            if(Prometeo.useAiControls)
+            if (Prometeo.useAiControls)
             {
-            GameObject.FindObjectOfType<GeneticAlgorithm>().Death(overallFitness, network);
+                GameObject.FindObjectOfType<GeneticAlgorithm>().Death(overallFitness, network);
             }
             Reset();
-            trackCheckpoint=GameObject.Find("Road").GetComponent<TrackCheckpoint>();
+            trackCheckpoint = GameObject.Find("Road").GetComponent<TrackCheckpoint>();
             trackCheckpoint.Reset();
         }
     }
@@ -385,8 +383,8 @@ public class CarController : MonoBehaviour
                 writer.Write(generationList[i]);
             }
             writer.Write(",");
-            ratio = (float) solutionList[i] / (float) generationList[i];
-            writer.Write (ratio);
+            ratio = (float)solutionList[i] / (float)generationList[i];
+            writer.Write(ratio);
             writer.Write(System.Environment.NewLine);
         }
 
@@ -401,6 +399,5 @@ public class CarController : MonoBehaviour
 
     public void CheckpointHit()
     {
-        Debug.Log("ale zajebisty fitness");
     }
 }
