@@ -7,6 +7,8 @@ public class CarController : MonoBehaviour
 {
     public PrometeoCarController Prometeo;
 
+    private GlobalSettings globalSettings;
+
     private NeuralNetwork network;
     private NeuralNetwork_BP network2;
 
@@ -70,6 +72,8 @@ public class CarController : MonoBehaviour
 
     public void Awake()
     {
+        //init global settings
+        globalSettings = GameObject.Find("GlobalSettings").GetComponent<GlobalSettings>();
 
         geneticAlgorithm = GameObject.Find("Genetic Algorithm").GetComponent<GeneticAlgorithm>();
         backPropagation = GameObject.Find("Back Propagation").GetComponent<BackPropagation>();
@@ -124,7 +128,7 @@ public class CarController : MonoBehaviour
         outputs2[1] = backPropagation.Calculate(sensors, 1);
         Prometeo.setOutputs2(outputs2);
         Prometeo.setOutputs(outputs);
-        if (Prometeo.useAiControls)
+        if (globalSettings.useAiControls)
         {
             MoveCarBot(outputs);
         }
@@ -179,14 +183,9 @@ public class CarController : MonoBehaviour
         avgSpeed = totalDistanceTravelled / timeSinceStart;
 
         overallFitness =
-            (totalDistanceTravelled * distanceMultiplier) +
-            (avgSpeed * avgSpeedMultiplier) +
-            (
-            (
-            (sensors[0] + sensors[1] + sensors[2] + sensors[3] + sensors[4]) / 5
-            ) *
-            sensorMultiplier
-            );
+            (distanceMultiplier * totalDistanceTravelled) +
+            (avgSpeedMultiplier * avgSpeed) +
+            (sensorMultiplier * (sensors[0] + sensors[1] + sensors[2] + sensors[3] + sensors[4] + sensors[5] + sensors[6]));
 
         if (
             (timeSinceStart > 20 && overallFitness < 50) ||
@@ -215,7 +214,7 @@ public class CarController : MonoBehaviour
     {
         if (!(collision.gameObject.tag == "Car"))
         {
-            if (Prometeo.useAiControls)
+            if (Prometeo.globalSettings.useAiControls)
             {
                 GameObject.FindObjectOfType<GeneticAlgorithm>().Death(overallFitness, network);
             }
