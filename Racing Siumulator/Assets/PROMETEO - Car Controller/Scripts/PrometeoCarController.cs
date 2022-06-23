@@ -108,7 +108,7 @@ public class PrometeoCarController : MonoBehaviour
     [Space(20)]
     //[Header("CONTROLS")]
     [Space(10)]
-    
+
     //The following variables lets you to set up touch controls for mobile devices.
     [HideInInspector]
     public bool useTouchControls = false;
@@ -132,26 +132,8 @@ public class PrometeoCarController : MonoBehaviour
     public GameObject handbrakeButton;
     [HideInInspector]
     PrometeoTouchInput handbrakePTI;
-   
-    
-    public enum Controls
-    {
-        playerControls,
-        aIControls,
-        bPAIControls
-    };
-    [Space(20)]
-    public Controls whichControls = Controls.playerControls;
-    [Space(20)]
-    
-    [HideInInspector]
-    public bool usePlayerControls=true;
-    [HideInInspector]
-    public bool useAiControls=false;
-    [HideInInspector]
-    public bool useBPControls=false;
 
-    
+
     //CAR DATA
 
     [HideInInspector]
@@ -204,28 +186,16 @@ public class PrometeoCarController : MonoBehaviour
     [HideInInspector]
     float RRWextremumSlip;
 
+    [HideInInspector]
+    public GlobalSettings globalSettings;
+
     // Start is called before the first frame update
     void Start()
     {
-       if(whichControls==Controls.playerControls)
-       {
-            usePlayerControls=true;
-            useAiControls=false;
-            useBPControls=false;
-       }
-       else if(whichControls==Controls.aIControls)
-       {
-            usePlayerControls=false;
-            useAiControls=true;
-            useBPControls=false;
-       }
-       else if(whichControls==Controls.bPAIControls)
-       {
-            usePlayerControls=false;
-            useAiControls=false;
-            useBPControls=true;
-       }
-   
+
+        //initialize global settings
+        globalSettings = GameObject.Find("GlobalSettings").GetComponent<GlobalSettings>();
+
         //In this part, we set the 'carRigidbody' value with the Rigidbody attached to this
         //gameObject. Also, we define the center of mass of the car with the Vector3 given
         //in the inspector.
@@ -376,7 +346,7 @@ public class PrometeoCarController : MonoBehaviour
         outputs2[1] = outs[1];
     }
 
-    
+
 
     // Update is called once per frame
     void Update()
@@ -410,47 +380,47 @@ public class PrometeoCarController : MonoBehaviour
         // {
         //     MoveCarBot(outputs);
         // }
-        if(useBPControls)
+        if (globalSettings.useBPControls)
         {
-            if (outputs2[0]>0)
+            if (outputs2[0] > 0)
             {
                 CancelInvoke("DecelerateCar");
                 deceleratingCar = false;
                 GoForward();
-            }  
+            }
             else
             {
                 ThrottleOff();
             }
             //Debug.Log(outputs2[1].ToString());              
-            if (outputs2[1]<-deadzone)
+            if (outputs2[1] < -deadzone)
             {
-                
+
                 // chance=(float)random.NextDouble()*-1;
                 // if(chance>=outputs2[1])
                 // {
                 //     Debug.Log("lucky");
-                    TurnLeft();
+                TurnLeft();
                 // }
                 // else
                 // Debug.Log("NOT lucky");
             }
-            if (outputs2[1]>deadzone)
+            if (outputs2[1] > deadzone)
             {
                 // chance=(float)random.NextDouble();
                 // if(chance<=outputs2[1])
                 // {
                 //     Debug.Log("lucky");
-                    TurnRight();
+                TurnRight();
                 // }
                 // else
                 // Debug.Log("NOT lucky");
             }
-            if (!(outputs2[1]<-deadzone) && !(outputs2[1]>deadzone) && steeringAxis != 0f)
+            if (!(outputs2[1] < -deadzone) && !(outputs2[1] > deadzone) && steeringAxis != 0f)
             {
                 ResetSteeringAngle();
             }
-            
+
         }
         else
         {
