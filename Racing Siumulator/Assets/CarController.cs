@@ -215,7 +215,7 @@ public class CarController : MonoBehaviour
     {
         if (!(collision.gameObject.tag == "Car"))
         {
-            if (Prometeo.useAiControls)
+            if (globalSettings.useAiControls)
             {
                 GameObject.FindObjectOfType<GeneticAlgorithm>().Death(overallFitness, network);
             }

@@ -1,247 +1,69 @@
-using MathNet.Numerics.LinearAlgebra; //matrices
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class GeneticAlgorithm : MonoBehaviour
 {
-    [Range(0.5f, 50.0f)]
-    public float timescale = 1f;
 
-    [Header("Reference")]
-    public CarController controller;
+    public static GeneticAlgorithm Singleton = null; // The current EvolutionManager Instance
 
-    [Header("Population")]
-    public int initialPopulation = 300;
+    [SerializeField] int CarCount = 100; // The number of cars per generation
+    [SerializeField] GameObject CarPrefab; // The Prefab of the car to be created for each instance
+    [SerializeField] Text GenerationNumberText; // Some text to write the generation number
 
-    [Range(0.0f, 1.0f)]
-    public float mutationRate = 0.04f;
+    int GenerationCount = 0; // The current generation number
 
-    [Header("Crossover Control")]
-    public int selectBest = 146;
-    public int selectWorst = 4;
-    public int crossoverAmount = 4;
+    List<CarController> Cars = new List<CarController>(); // This list of cars currently alive
 
-    private List<int> genePool = new List<int>();
+    NeuralNetwork BestNeuralNetwork = null; // The best NeuralNetwork currently available
+    int BestFitness = -1; // The FItness of the best NeuralNetwork ever created
 
-    private int selectedCount;
-    private NeuralNetwork[] population;
-
-    [Header("Population tracker")]
-    public int currentGen = 0;
-    public int currentChrom = 0;
-
+    // On Start
     private void Start()
     {
-        InitialisePopulation();
-        Time.timeScale = timescale;
-    }
-
-    private void FixedUpdate()
-    {
-        Time.timeScale = timescale;
-    }
-
-    private void InitialisePopulation()
-    {
-        population = new NeuralNetwork[initialPopulation];
-        RandomPopulate(population, 0);
-        ResetToCurrentGenome();
-    }
-
-    private void RandomPopulate(NeuralNetwork[] newPop, int i)
-    {
-        while (i < initialPopulation)
-        {
-            newPop[i] = new NeuralNetwork();
-            newPop[i].Initialise(controller.layers, controller.neurons);
-            i++;
-        }
-    }
-
-    private void ResetToCurrentGenome()
-    {
-        controller.ResetNetwork(population[currentChrom]);
-    }
-
-    //car controller sends fitness value and network details for evaluation on death
-    public void Death(float passedFitness, NeuralNetwork nn)
-    {
-        if (currentChrom < population.Length - 1)
-        {
-            population[currentChrom].fitness = passedFitness;
-            currentChrom++;
-            ResetToCurrentGenome();
-        }
+        if (Singleton == null) // If no other instances were created
+            Singleton = this; // Make the only instance this one
         else
+            gameObject.SetActive(false); // There is another instance already in place. Make this one inactive.
+
+        BestNeuralNetwork = new NeuralNetwork(CarController.NextNetwork); // Set the BestNeuralNetwork to a random new network
+
+        StartGeneration();
+    }
+
+    // Sarts a whole new generation
+    void StartGeneration()
+    {
+        GenerationCount++; // Increment the generation count
+        GenerationNumberText.text = "Generation: " + GenerationCount; // Update generation text
+
+        for (int i = 0; i < CarCount; i++)
         {
-            Repopulate();
+            if (i == 0)
+                CarController.NextNetwork = BestNeuralNetwork; // Make sure one car uses the best network
+            else
+            {
+                CarController.NextNetwork = new NeuralNetwork(BestNeuralNetwork); // Clone the best neural network and set it to be for the next car
+                CarController.NextNetwork.Mutate(); // Mutate it
+            }
+
+            Cars.Add(Instantiate(CarPrefab, transform.position, Quaternion.identity, transform).GetComponent<CarController>()); // Instantiate a new car and add it to the list of cars
         }
     }
 
-    private void Repopulate()
+    // Gets called by cars when they die
+    public void CarDead(CarController DeadCar, int Fitness)
     {
-        controller.decreaseEpoch();
-        controller.checkEpoch();
-        genePool.Clear();
-        currentGen++;
-        selectedCount = 0;
-        SortPopulation();
-        NeuralNetwork[] newPop = PickBest();
+        Cars.Remove(DeadCar); // Remove the car from the list
+        Destroy(DeadCar.gameObject); // Destroy the dead car
 
-        Crossover(newPop);
-        Mutation(newPop);
-
-        RandomPopulate(newPop, selectedCount);
-
-        currentChrom = 0;
-        ResetToCurrentGenome();
-    }
-
-    public void Crossover(NeuralNetwork[] newPop)
-    {
-        for (int i = 0; i < crossoverAmount; i += 2)
+        if (Fitness > BestFitness) // If it is better that the current best car
         {
-            int point1 = i;
-            int point2 = i + 1;
-            if (genePool.Count > 0)
-            {
-                for (int j = 0; j < 100; j++)
-                {
-                    point1 = genePool[Random.Range(0, genePool.Count)];
-                    point2 = genePool[Random.Range(0, genePool.Count)];
-
-                    if (point1 != point2)
-                    {
-                        break;
-                    }
-                }
-            }
-
-            NeuralNetwork offspring1 = new NeuralNetwork();
-            NeuralNetwork offspring2 = new NeuralNetwork();
-            offspring1.Initialise(controller.layers, controller.neurons);
-            offspring2.Initialise(controller.layers, controller.neurons);
-            offspring1.fitness = 0;
-            offspring2.fitness = 0;
-
-            for (int k = 0; k < offspring1.weights.Count; k++)
-            {
-                if (Random.Range(0.0f, 1.0f) < 0.5f)
-                {
-                    offspring1.weights[k] = population[point1].weights[k];
-                    offspring2.weights[k] = population[point2].weights[k];
-                }
-                else
-                {
-                    offspring1.weights[k] = population[point2].weights[k];
-                    offspring2.weights[k] = population[point1].weights[k];
-                }
-            }
-
-            for (int l = 0; l < offspring1.biases.Count; l++)
-            {
-                if (Random.Range(0.0f, 1.0f) < 0.5f)
-                {
-                    offspring1.biases[l] = population[point1].biases[l];
-                    offspring2.biases[l] = population[point2].biases[l];
-                }
-                else
-                {
-                    offspring1.biases[l] = population[point2].biases[l];
-                    offspring2.biases[l] = population[point1].biases[l];
-                }
-            }
-
-            newPop[selectedCount] = offspring1;
-            selectedCount++;
-            newPop[selectedCount] = offspring2;
-            selectedCount++;
-        }
-    }
-
-    public void Mutation(NeuralNetwork[] newPop)
-    {
-        for (int i = 0; i < selectedCount; i++)
-        {
-            for (int j = 0; j < newPop[i].weights.Count; j++)
-            {
-                if (Random.Range(0.0f, 1.0f) < mutationRate)
-                {
-                    newPop[i].weights[j] = MutateMatrix(newPop[i].weights[j]);
-                }
-            }
-        }
-    }
-    Matrix<float> MutateMatrix(Matrix<float> A)
-    {
-        int randomPoints = Random.Range(1, (A.RowCount * A.ColumnCount) / 7);
-        Matrix<float> B = A;
-
-        for (int i = 0; i < randomPoints; i++)
-        {
-            int randomColumn = Random.Range(0, B.ColumnCount);
-            int randomRow = Random.Range(0, B.RowCount);
-            B[randomRow, randomColumn] = Mathf.Clamp(B[randomRow, randomColumn] + Random.Range(-1f, 1f), -1f, 1f);
+            BestNeuralNetwork = DeadCar.TheNetwork; // Make sure it becomes the best car
+            BestFitness = Fitness; // And also set the best fitness
         }
 
-        return B;
-    }
-
-    private void SortPopulation()
-    {
-        for (int i = 0; i < population.Length; i++)
-        {
-            for (int j = 0; j < population.Length; j++)
-            {
-                if (population[i].fitness < population[j].fitness)
-                {
-                    NeuralNetwork temp = population[i];
-                    population[i] = population[j];
-                    population[j] = temp;
-                }
-            }
-        }
-    }
-
-    private NeuralNetwork[] PickBest()
-    {
-        NeuralNetwork[] newPop = new NeuralNetwork[initialPopulation];
-
-        for (int i = 0; i < selectBest; i++)
-        {
-            newPop[selectedCount] = population[i].InitialiseCopy(controller.layers, controller.neurons);
-            newPop[selectedCount].fitness = 0;
-            selectedCount++;
-
-            int f = Mathf.RoundToInt(population[i].fitness * 10);
-            for (int x = 0; x < f; x++)
-            {
-                genePool.Add(i);
-            }
-        }
-
-        for (int j = 0; j < selectWorst; j++)
-        {
-            int last = population.Length - 1;
-            last -= j;
-
-            int g = Mathf.RoundToInt(population[last].fitness * 10);
-            for (int y = 0; y < g; y++)
-            {
-                genePool.Add(last);
-            }
-        }
-        return newPop;
-    }
-
-    public int getChromCount()
-    {
-        return currentChrom;
-    }
-
-    public int getGenCount()
-    {
-        return currentGen;
+        if (Cars.Count <= 0) // If there are no cars left
+            StartGeneration(); // Create a new generation
     }
 }
