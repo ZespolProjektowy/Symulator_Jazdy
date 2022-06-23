@@ -10,10 +10,11 @@ public class GeneticAlgorithm : MonoBehaviour
     [SerializeField] int CarCount = 100; // The number of cars per generation
     [SerializeField] GameObject CarPrefab; // The Prefab of the car to be created for each instance
     [SerializeField] Text GenerationNumberText; // Some text to write the generation number
+    [SerializeField] Text BestFitnessText; // Some text to write the generation number
 
-    int GenerationCount = 0; // The current generation number
+    public int GenerationCount = 0; // The current generation number
 
-    List<CarController> Cars = new List<CarController>(); // This list of cars currently alive
+    public List<CarController> Cars = new List<CarController>(); // This list of cars currently alive
 
     NeuralNetwork BestNeuralNetwork = null; // The best NeuralNetwork currently available
     int BestFitness = -1; // The FItness of the best NeuralNetwork ever created
@@ -47,14 +48,21 @@ public class GeneticAlgorithm : MonoBehaviour
                 CarController.NextNetwork.Mutate(); // Mutate it
             }
 
-            Cars.Add(Instantiate(CarPrefab, transform.position, Quaternion.identity, transform).GetComponent<CarController>()); // Instantiate a new car and add it to the list of cars
+            Cars.Add(Instantiate(CarPrefab, transform.position, transform.rotation, transform).GetComponent<CarController>()); // Instantiate a new car and add it to the list of cars
         }
+
+        //get track checkpoint component
+        TrackCheckpoint trackCheckpoint = GameObject.Find("Road").GetComponent<TrackCheckpoint>();
+        trackCheckpoint.updateList();
+        //set best fitness text
+        BestFitnessText.text = "Best Fitness: " + BestFitness;
     }
 
     // Gets called by cars when they die
     public void CarDead(CarController DeadCar, int Fitness)
     {
         Cars.Remove(DeadCar); // Remove the car from the list
+
         Destroy(DeadCar.gameObject); // Destroy the dead car
 
         if (Fitness > BestFitness) // If it is better that the current best car
@@ -63,7 +71,11 @@ public class GeneticAlgorithm : MonoBehaviour
             BestFitness = Fitness; // And also set the best fitness
         }
 
-        if (Cars.Count <= 0) // If there are no cars left
-            StartGeneration(); // Create a new generation
+        if (Cars.Count <= 0)
+        {
+            StartGeneration();
+        }
+        //set best fitness text
+        BestFitnessText.text = "Best Fitness: " + BestFitness;
     }
 }

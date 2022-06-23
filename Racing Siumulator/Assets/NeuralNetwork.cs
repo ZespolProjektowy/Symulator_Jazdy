@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using UnityEngine;
+using Random = System.Random;
 
 public class NeuralNetwork
 {
@@ -112,11 +114,15 @@ public class NeuralNetwork
             }
 
             // Apply Activation Function
-            for (int i = 0; i < Output.Length; i++)
-                Output[i] = ReLU(Output[i]);
-
+            Output[0] = Sigmoid(Output[0]);
+            Output[1] = Math.Tanh(Output[1]);
             // Return Output
             return Output;
+        }
+
+        private double Sigmoid(double s)
+        {
+            return (1 / (1 + Mathf.Exp((float)-s)));
         }
 
         /// <summary>

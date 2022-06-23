@@ -108,6 +108,21 @@ public class BackPropagation : MonoBehaviour
             //     Debug.Log(net.FeedForward(new float[]{1,1,1})[0]);
         }
     }
+
+    public float Calculate(double[] inputs, int n)
+    {
+        //double input to float
+        float[] input = new float[inputs.Length];
+        for (int i = 0; i < inputs.Length; i++)
+        {
+            input[i] = (float)inputs[i];
+        }
+        //return
+        return net.FeedForward(input)[n];
+
+
+    }
+
     public float Calculate(float[] inputs, int n)
     {
         return net.FeedForward(inputs)[n];

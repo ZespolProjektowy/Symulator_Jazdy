@@ -48,6 +48,15 @@ public class GlobalSettings : MonoBehaviour
             useBPControls = true;
         }
 
+        //get genetic algorithm
+        GeneticAlgorithm ga = GameObject.Find("Genetic Algorithm").GetComponent<GeneticAlgorithm>();
+
+        // disable genetic algorithm script if bpaicontrols is true
+        if (useBPControls)
+        {
+            ga.enabled = false;
+        }
+
     }
 
     // Update is called once per frame

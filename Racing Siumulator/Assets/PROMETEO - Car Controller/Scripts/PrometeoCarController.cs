@@ -334,10 +334,10 @@ public class PrometeoCarController : MonoBehaviour
     [HideInInspector]
     public float[] outputs2 = new float[2];
 
-    public void setOutputs(float[] outs)
+    public void setOutputs(double[] outs)
     {
-        outputs[0] = outs[0];
-        outputs[1] = outs[1];
+        //outputs[0] = outs[0];
+        //outputs[1] = outs[1];
     }
 
     public void setOutputs2(float[] outs)
@@ -351,15 +351,6 @@ public class PrometeoCarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        //CAR DATA
-
-        // We determine the speed of the car.
-        carSpeed = (2 * Mathf.PI * frontLeftCollider.radius * frontLeftCollider.rpm * 60) / 1000;
-        // Save the local velocity of the car in the x axis. Used to know if the car is drifting.
-        localVelocityX = transform.InverseTransformDirection(carRigidbody.velocity).x;
-        // Save the local velocity of the car in the z axis. Used to know if the car is going forward or backwards.
-        localVelocityZ = transform.InverseTransformDirection(carRigidbody.velocity).z;
 
         //CAR PHYSICS
 
@@ -382,6 +373,15 @@ public class PrometeoCarController : MonoBehaviour
         // }
         if (globalSettings.useBPControls)
         {
+
+            //CAR DATA
+
+            // We determine the speed of the car.
+            carSpeed = (2 * Mathf.PI * frontLeftCollider.radius * frontLeftCollider.rpm * 60) / 1000;
+            // Save the local velocity of the car in the x axis. Used to know if the car is drifting.
+            localVelocityX = transform.InverseTransformDirection(carRigidbody.velocity).x;
+            // Save the local velocity of the car in the z axis. Used to know if the car is going forward or backwards.
+            localVelocityZ = transform.InverseTransformDirection(carRigidbody.velocity).z;
             if (outputs2[0] > 0)
             {
                 CancelInvoke("DecelerateCar");
@@ -422,7 +422,7 @@ public class PrometeoCarController : MonoBehaviour
             }
 
         }
-        else
+        else if (!globalSettings.useAiControls)
         {
             if (useTouchControls && touchControlsSetup)
             {
@@ -526,7 +526,10 @@ public class PrometeoCarController : MonoBehaviour
 
 
         // We call the method AnimateWheelMeshes() in order to match the wheel collider movements with the 3D meshes of the wheels.
-        AnimateWheelMeshes();
+        if (!globalSettings.useAiControls)
+        {
+            AnimateWheelMeshes();
+        }
 
     }
 

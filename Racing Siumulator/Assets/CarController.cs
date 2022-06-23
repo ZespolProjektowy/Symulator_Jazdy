@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -16,11 +17,35 @@ public class CarController : MonoBehaviour
 
     private Quaternion startRotation;
 
+    public GeneticAlgorithm geneticAlgorithm;
+
+    public BackPropagation backPropagation;
+
+    public TrackCheckpoint trackCheckpoint;
+
+    private Vector3 lastPosition;
+
+    private List<int> generationList = new List<int>();
+
+    private List<int> solutionList = new List<int>();
+
+    private string filePath;
+
+    private double[] outputs = new double[2];
+    private float[] outputs2 = new float[2];
+
+    private double[] sensors = new double[7];
+
+    [SerializeField] float FitnessUnchangedDie = 10; // The number of seconds to wait before checking if the fitness didn't increase
+    [SerializeField] public int Fitness = 0;
+
+    public static NeuralNetwork NextNetwork = new NeuralNetwork(new uint[] { 7, 25, 25, 2 }, null); // public NeuralNetwork that refers to the next neural network to be set to the next instantiated car
+
+    public string TheGuid { get; private set; } // The Unique ID of the current car
+
+    public NeuralNetwork TheNetwork { get; private set; } // The NeuralNetwork of the current car
+
     public float timeSinceStart = 0f;
-
-    [Header("Fitness")]
-    public float overallFitness;
-
     // value distance the most
     public float distanceMultiplier = 1.4f;
 
@@ -29,46 +54,9 @@ public class CarController : MonoBehaviour
 
     public float sensorMultiplier = 0.1f;
 
-    public GeneticAlgorithm geneticAlgorithm;
-
-    public BackPropagation backPropagation;
-
-    public TrackCheckpoint trackCheckpoint;
-
-    [Header("Hyperparameters")]
-    public int layers = 1;
-
-    public int neurons = 24;
-
-    public int epoch = 200;
-
-    private Vector3 lastPosition;
-
     private float totalDistanceTravelled = 0f;
 
     private float avgSpeed;
-
-    [Header("Results")]
-    public int generationCount = 0;
-
-    public int solutionCount = 0;
-
-    [Range(-1f, 1f)]
-    public float
-
-            a,
-            t;
-
-    private List<int> generationList = new List<int>();
-
-    private List<int> solutionList = new List<int>();
-
-    private string filePath;
-
-    private float[] outputs = new float[2];
-    private float[] outputs2 = new float[2];
-
-    private float[] sensors = new float[7];
 
     public void Awake()
     {
@@ -82,17 +70,32 @@ public class CarController : MonoBehaviour
         lastPosition = startPosition;
 
         network2 = GetComponent<NeuralNetwork_BP>();
-        network = GetComponent<NeuralNetwork>();
         using (StreamWriter writetext = new StreamWriter("write.txt"))
         {
 
         }
+
+        TheGuid = Guid.NewGuid().ToString(); // Assigns a new Unique ID for the current car
+
+        TheNetwork = NextNetwork; // Sets the current network to the Next Network
+        NextNetwork = new NeuralNetwork(NextNetwork.Topology, null); // Make sure the Next Network is reassigned to avoid having another car use the same network
+        StartCoroutine(IsNotImproving()); // Start checking if the score stayed the same for a lot of time
+
     }
 
-    public void ResetNetwork(NeuralNetwork neural)
+    // Checks each few seconds if the car didn't make any improvement
+    IEnumerator IsNotImproving()
     {
-        network = neural;
-        Reset();
+        while (true)
+        {
+            int OldFitness = Fitness; // Save the initial fitness
+            yield return new WaitForSeconds(FitnessUnchangedDie); // Wait for some time
+            if (OldFitness == Fitness)
+            {
+                GeneticAlgorithm.Singleton.CarDead(this, Fitness); // Tell the Evolution Manager that the car is dead
+                gameObject.SetActive(false); // Make sure the car is inactive
+            }
+        }
     }
 
     public void Reset()
@@ -102,7 +105,6 @@ public class CarController : MonoBehaviour
         totalDistanceTravelled = 0f;
         avgSpeed = 0f;
         lastPosition = startPosition;
-        overallFitness = 0f;
         Prometeo.transform.position = startPosition;
         Prometeo.transform.rotation = startRotation;
 
@@ -122,55 +124,41 @@ public class CarController : MonoBehaviour
 
         lastPosition = Prometeo.transform.position;
 
-        (outputs[0], outputs[1]) = network.StartNetwork(sensors[0], sensors[1], sensors[2], sensors[3],
-        sensors[4], sensors[5], sensors[6]);
+        // Feed through the network
+        outputs = TheNetwork.FeedForward(sensors);
+
         outputs2[0] = backPropagation.Calculate(sensors, 0);
         outputs2[1] = backPropagation.Calculate(sensors, 1);
         Prometeo.setOutputs2(outputs2);
-        Prometeo.setOutputs(outputs);
+        //Prometeo.setOutputs(outputs);
         if (globalSettings.useAiControls)
         {
             MoveCarBot(outputs);
         }
+        else
+        {
+            accKey = -1;
+            strKey = 0;
+            if (Input.GetKey(KeyCode.W))
+            {
+                accKey = 1;
+            }
 
-        //Prometeo.GoForward();
-        //MoveCar(outputs);
-        timeSinceStart += Time.deltaTime;
-        accKey = -1;
-        strKey = 0;
-        if (Input.GetKey(KeyCode.W))
-        {
-            accKey = 1;
+            if (Input.GetKey(KeyCode.A))
+            {
+                strKey = -1;
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                strKey = 1;
+            }
+            using (StreamWriter writetext = new StreamWriter("write.txt", append: true))
+            {
+                writetext.WriteLine(sensors[0].ToString() + " " + sensors[1].ToString() + " " + sensors[2].ToString() + " " + sensors[3].ToString() + " " + sensors[4].ToString() + " " + sensors[5].ToString() + " " + sensors[6].ToString() + " " + accKey.ToString() + ",0 " + strKey.ToString() + ",0");
+            }
         }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            strKey = -1;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            strKey = 1;
-        }
-        using (StreamWriter writetext = new StreamWriter("write.txt", append: true))
-        {
-            writetext.WriteLine(sensors[0].ToString() + " " + sensors[1].ToString() + " " + sensors[2].ToString() + " " + sensors[3].ToString() + " " + sensors[4].ToString() + " " + sensors[5].ToString() + " " + sensors[6].ToString() + " " + accKey.ToString() + ",0 " + strKey.ToString() + ",0");
-        }
-
         CalculateFitness();
-    }
 
-    private Vector3 moveInput;
-
-    public void MoveCarBot(float[] output)
-    {
-        moveInput =
-            Vector3
-                .Lerp(Vector3.zero,
-                new Vector3(0, 0, output[0] * 11.4f),
-                0.02f);
-        moveInput = transform.TransformDirection(moveInput);
-        transform.position += moveInput;
-        transform.eulerAngles += new Vector3(0, (output[1] * 45) * 0.02f, 0);
     }
 
     private void CalculateFitness()
@@ -182,32 +170,22 @@ public class CarController : MonoBehaviour
 
         avgSpeed = totalDistanceTravelled / timeSinceStart;
 
-        overallFitness =
-            (distanceMultiplier * totalDistanceTravelled) +
-            (avgSpeedMultiplier * avgSpeed) +
-            (sensorMultiplier * (sensors[0] + sensors[1] + sensors[2] + sensors[3] + sensors[4] + sensors[5] + sensors[6]));
+        //calculate fitness based on total distance travelled
+        Fitness = (int)(totalDistanceTravelled * distanceMultiplier);
+    }
 
-        if (
-            (timeSinceStart > 20 && overallFitness < 50) ||
-            overallFitness > 1350
-        )
-        {
-            // GameObject
-            //    .FindObjectOfType<GeneticAlgorithm>()
-            //    .Death(overallFitness, network);
-        }
+    private Vector3 moveInput;
 
-        // if ((timeSinceStart > 20 && overallFitness < 50) || overallFitness > 1350)
-        // {
-        //     if(overallFitness > 1350)
-        //     {
-        //         generationCount = geneticAlgorithm.getGenCount() + 1;
-        //         solutionCount++;
-        //         generationList.Add(generationCount);
-        //         solutionList.Add(solutionCount);
-        //     }
-        //     GameObject.FindObjectOfType<GeneticAlgorithm>().Death(overallFitness, network);
-        // }
+    public void MoveCarBot(double[] output)
+    {
+        moveInput =
+            Vector3
+                .Lerp(Vector3.zero,
+                new Vector3(0, 0, (float)(output[0] * 11.4f)),
+                0.02f);
+        moveInput = transform.TransformDirection(moveInput);
+        transform.position += moveInput;
+        transform.eulerAngles += new Vector3(0, (float)((output[1] * 45) * 0.02f), 0);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -216,11 +194,14 @@ public class CarController : MonoBehaviour
         {
             if (globalSettings.useAiControls)
             {
-                GameObject.FindObjectOfType<GeneticAlgorithm>().Death(overallFitness, network);
+                GeneticAlgorithm.Singleton.CarDead(this, Fitness); // Tell the Evolution Manager that the car is dead
+                gameObject.SetActive(false); // Make sure the car is inactive
             }
-            Reset();
-            trackCheckpoint = GameObject.Find("Road").GetComponent<TrackCheckpoint>();
-            trackCheckpoint.Reset();
+            else
+            {
+                Reset();
+            }
+            //trackCheckpoint = GameObject.Find("Road").GetComponent<TrackCheckpoint>();
         }
     }
 
@@ -343,60 +324,8 @@ public class CarController : MonoBehaviour
         }
     }
 
-    public void decreaseEpoch()
-    {
-        epoch--;
-    }
-
-    public void checkEpoch()
-    {
-        if (this.epoch == 0)
-        {
-            //writeToFile();
-            //Time.timeScale = 0;
-        }
-    }
-
-    private void writeToFile()
-    {
-        float ratio = 0;
-
-        filePath = getPath();
-        StreamWriter writer = new StreamWriter(filePath);
-        writer.WriteLine("Solution Count,Generation Count,Ratio");
-
-        for (
-            int i = 0;
-            i < Math.Max(solutionList.Count, generationList.Count);
-            i++
-        )
-        {
-            if (i < solutionList.Count)
-            {
-                writer.Write(solutionList[i]);
-            }
-            writer.Write(",");
-
-            if (i < generationList.Count)
-            {
-                writer.Write(generationList[i]);
-            }
-            writer.Write(",");
-            ratio = (float)solutionList[i] / (float)generationList[i];
-            writer.Write(ratio);
-            writer.Write(System.Environment.NewLine);
-        }
-
-        writer.Flush();
-        writer.Close();
-    }
-
-    private string getPath()
-    {
-        return Application.dataPath + "sols.csv";
-    }
-
     public void CheckpointHit()
     {
+        //Fitness++;
     }
 }
