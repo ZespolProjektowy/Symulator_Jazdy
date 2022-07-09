@@ -10,14 +10,14 @@ public class GeneticAlgorithm : MonoBehaviour
     [SerializeField] int CarCount = 100; // The number of cars per generation
     [SerializeField] GameObject CarPrefab; // The Prefab of the car to be created for each instance
     [SerializeField] Text GenerationNumberText; // Some text to write the generation number
-    [SerializeField] Text BestFitnessText; // Some text to write the generation number
+    public Text BestFitnessText; // Some text to write the generation number
 
     public int GenerationCount = 0; // The current generation number
 
     public List<CarController> Cars = new List<CarController>(); // This list of cars currently alive
 
     NeuralNetwork BestNeuralNetwork = null; // The best NeuralNetwork currently available
-    int BestFitness = -1; // The FItness of the best NeuralNetwork ever created
+    public int BestFitness = 0; // The FItness of the best NeuralNetwork ever created
 
     // On Start
     private void Start()
@@ -54,8 +54,6 @@ public class GeneticAlgorithm : MonoBehaviour
         //get track checkpoint component
         TrackCheckpoint trackCheckpoint = GameObject.Find("Road").GetComponent<TrackCheckpoint>();
         trackCheckpoint.updateList();
-        //set best fitness text
-        BestFitnessText.text = "Best Fitness: " + BestFitness;
     }
 
     // Gets called by cars when they die
@@ -76,6 +74,6 @@ public class GeneticAlgorithm : MonoBehaviour
             StartGeneration();
         }
         //set best fitness text
-        BestFitnessText.text = "Best Fitness: " + BestFitness;
+        //BestFitnessText.text = "Best Fitness: " + BestFitness;
     }
 }

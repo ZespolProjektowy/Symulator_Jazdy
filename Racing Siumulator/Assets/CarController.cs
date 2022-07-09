@@ -37,7 +37,7 @@ public class CarController : MonoBehaviour
     private double[] sensors = new double[7];
 
     [SerializeField] float FitnessUnchangedDie = 10; // The number of seconds to wait before checking if the fitness didn't increase
-    [SerializeField] public int Fitness = 0;
+    public int Fitness = 0;
 
     public static NeuralNetwork NextNetwork = new NeuralNetwork(new uint[] { 7, 25, 25, 2 }, null); // public NeuralNetwork that refers to the next neural network to be set to the next instantiated car
 
@@ -185,7 +185,7 @@ public class CarController : MonoBehaviour
                 0.02f);
         moveInput = transform.TransformDirection(moveInput);
         transform.position += moveInput;
-        transform.eulerAngles += new Vector3(0, (float)((output[1] * 45) * 0.02f), 0);
+        transform.eulerAngles += new Vector3(0, (float)((output[1] * 90) * 0.02f), 0);
     }
 
     private void OnCollisionEnter(Collision collision)

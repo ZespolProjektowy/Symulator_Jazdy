@@ -13,12 +13,15 @@ public class CameraFollow : MonoBehaviour
     Vector3 SmoothPosVelocity; // Velocity of Position Smoothing
     Vector3 SmoothRotVelocity; // Velocity of Rotation  Smoothing
     private GlobalSettings globalSettings;
+    private GeneticAlgorithm geneticAlgorithm;
 
     void Start()
     {
         //init global 
         globalSettings = GameObject.Find("GlobalSettings").GetComponent<GlobalSettings>();
         initialCameraPosition = gameObject.transform.position;
+        //init genetic algorithm
+        geneticAlgorithm = GameObject.Find("Genetic Algorithm").GetComponent<GeneticAlgorithm>();
     }
 
     void FixedUpdate()
@@ -47,6 +50,11 @@ public class CameraFollow : MonoBehaviour
                     BestCar = CurrentCar; // Then, the best car is the current car
                 }
             }
+            //geneticAlgorithm.BestFitnessText.text = "Best Fitness: " + BestCar.Fitness;
+
+
+
+
 
             carTransform = BestCar.transform.GetChild(0); // The target position of the camera relative to the best car
 
